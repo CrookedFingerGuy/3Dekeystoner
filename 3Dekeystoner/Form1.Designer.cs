@@ -29,20 +29,20 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.triangleRectangleImageBox = new Emgu.CV.UI.ImageBox();
+            this.finalImageBox = new Emgu.CV.UI.ImageBox();
             this.lineImageBox = new Emgu.CV.UI.ImageBox();
-            ((System.ComponentModel.ISupportInitialize)(this.triangleRectangleImageBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.finalImageBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lineImageBox)).BeginInit();
             this.SuspendLayout();
             // 
             // triangleRectangleImageBox
             // 
-            this.triangleRectangleImageBox.Location = new System.Drawing.Point(12, 12);
-            this.triangleRectangleImageBox.Name = "triangleRectangleImageBox";
-            this.triangleRectangleImageBox.Size = new System.Drawing.Size(643, 827);
-            this.triangleRectangleImageBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.triangleRectangleImageBox.TabIndex = 2;
-            this.triangleRectangleImageBox.TabStop = false;
+            this.finalImageBox.Location = new System.Drawing.Point(12, 12);
+            this.finalImageBox.Name = "triangleRectangleImageBox";
+            this.finalImageBox.Size = new System.Drawing.Size(643, 827);
+            this.finalImageBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.finalImageBox.TabIndex = 2;
+            this.finalImageBox.TabStop = false;
             // 
             // lineImageBox
             // 
@@ -59,18 +59,18 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1349, 851);
             this.Controls.Add(this.lineImageBox);
-            this.Controls.Add(this.triangleRectangleImageBox);
+            this.Controls.Add(this.finalImageBox);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.triangleRectangleImageBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.finalImageBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lineImageBox)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private Emgu.CV.UI.ImageBox triangleRectangleImageBox;
+        private Emgu.CV.UI.ImageBox finalImageBox;
         private Emgu.CV.UI.ImageBox lineImageBox;
     }
 }
