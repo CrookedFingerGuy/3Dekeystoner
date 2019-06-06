@@ -39,21 +39,14 @@ namespace _3Dekeystoner
 
             CvInvoke.Canny(uimage, cannyEdges, cannyThreshold, cannyThresholdLinking);
 
-            VectorOfVectorOfPoint contours=new VectorOfVectorOfPoint();
-            Mat m = new Mat();
-            CvInvoke.FindContours(cannyEdges, contours, m, RetrType.External,ChainApproxMethod.ChainApproxSimple);
+            LineSegment2D[] lines = CvInvoke.HoughLinesP(cannyEdges, 1, Math.PI / 45.0, 30, 50, 150);
+
+
+
+
             finalImageBox.Image = img;
 
 
-            Mat lineImage = new Mat();
-            img.CopyTo(lineImage);
-            lineImage.SetTo(new MCvScalar(0.0));
-            for (int i = 0; i < contours.Size; i++)
-            {
-               CvInvoke.DrawContours(lineImage, contours, i, new MCvScalar(255, 0, 0), 2);
-            }
-            lineImageBox.Image = lineImage;
-            /*
             LineSegment2D[] boxEdges = { new LineSegment2D(new Point(0, 0), new Point(0, 0)), new LineSegment2D(new Point(img.Size.Width, 0), new Point(0, 0)), new LineSegment2D(new Point(0, 0), new Point(0, 0)), new LineSegment2D(new Point(0, img.Size.Height), new Point(0, 0)) };
 
             foreach (LineSegment2D line in lines)
@@ -108,26 +101,26 @@ namespace _3Dekeystoner
             Mat matrixMcMatrix = new Mat();
             Mat perspMat = new Mat();
 
-            
+            Mat lineImage = img;
             Mat lineImage2 = new Mat();
             perspMat= CvInvoke.GetPerspectiveTransform(
                 new PointF[] { new PointF { X = boxEdges[0].P1.X, Y =boxEdges[0].P1.Y }, new PointF { X = boxEdges[2].P1.X, Y = boxEdges[2].P1.Y },
                 new PointF {X = boxEdges[3].P1.X, Y =boxEdges[3].P1.Y }, new PointF {X = boxEdges[1].P1.X, Y =boxEdges[1].P1.Y } }, 
                 new PointF[] { new PointF { X = 0, Y = 0 }, new PointF { X = 2048, Y = 0 }, new PointF { X = 0, Y = 2048 }, new PointF { X = 2048, Y = 2048 } });
             CvInvoke.WarpPerspective(lineImage,lineImage2, perspMat, lineImage.Size);
-            */
-            Mat matrixMcMatrix = new Mat();
-            Mat lineImage2 = lineImage;
-            //Mat croped = new Mat(lineImage2, new Rectangle(0, 0, 2048, 2048));
-            CvInvoke.GetRotationMatrix2D(new Point(lineImage2.Cols / 2, lineImage2.Rows / 2), -90, 1, matrixMcMatrix);            
-            CvInvoke.WarpAffine(lineImage2, lineImage2, matrixMcMatrix, lineImage.Size);
-            finalImageBox.Image = lineImage2;
-            
+            Mat croped = new Mat(lineImage2, new Rectangle(0, 0, 2048, 2048));
+            CvInvoke.GetRotationMatrix2D(new Point(croped.Cols / 2, croped.Rows / 2), -90, 1, matrixMcMatrix);            
+            CvInvoke.WarpAffine(croped, croped, matrixMcMatrix, lineImage.Size);
+            finalImageBox.Image = croped;
 
 
 
-            //foreach (LineSegment2D line in boxEdges)
-            //  CvInvoke.Line(lineImage, line.P1, line.P2, new MCvScalar(0, 0, 255), 2);
+            lineImage.SetTo(new MCvScalar(0.0));
+            foreach (LineSegment2D line in lines)
+                CvInvoke.Line(lineImage, line.P1, line.P2,new MCvScalar(0,255,0), 2);
+            foreach (LineSegment2D line in boxEdges)
+                CvInvoke.Line(lineImage, line.P1, line.P2, new MCvScalar(0, 0, 255), 2);
+            lineImageBox.Image = lineImage;
         }
     }
 }
