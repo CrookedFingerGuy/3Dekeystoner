@@ -29,27 +29,21 @@ namespace _3Dekeystoner
         private void Form1_Load(object sender, EventArgs e)
         {
 
-            Mat img =new Mat("C:\\Users\\Chiz\\Documents\\3D Projects\\Wizardry 8\\Left.jpg");
-            UMat uimage = new UMat();
-            CvInvoke.CvtColor(img, img, ColorConversion.Bgr2Gray);
-            
+            Mat colorImage = new Mat("C:\\Users\\Chiz\\Documents\\3D Projects\\Wizardry 8\\Front.jpg");
+            Mat img = new Mat();
+            CvInvoke.CvtColor(colorImage, img, ColorConversion.Bgr2Gray);
+
             UMat pyrDown = new UMat();
             CvInvoke.PyrDown(img, pyrDown);
             CvInvoke.PyrUp(pyrDown, img);
             CvInvoke.Threshold(img, img, 100, 255, ThresholdType.BinaryInv);
 
 
-            /*
-            double cannyThreshold = 125;
-            double cannyThresholdLinking = 255;
-            UMat cannyEdges = new UMat();
-            //CvInvoke.Canny(img, img, cannyThreshold, cannyThresholdLinking);
-            */
 
-            contours =new VectorOfVectorOfPoint();
+            contours = new VectorOfVectorOfPoint();
             Mat m = new Mat();
-            CvInvoke.FindContours(img, contours, m, RetrType.Ccomp,ChainApproxMethod.ChainApproxSimple);
-            finalImageBox.Image = img;
+            CvInvoke.FindContours(img, contours, m, RetrType.Ccomp, ChainApproxMethod.ChainApproxSimple);
+            //finalImageBox.Image = img;
 
             this.Text = contours.Size.ToString();
 
@@ -62,25 +56,27 @@ namespace _3Dekeystoner
             double tempArea = 0.0;
             int largestContourIndex = 0;
 
-            for(int i=0;i<contours.Size;i++)
+            for (int i = 0; i < contours.Size; i++)
             {
-                tempArea= CvInvoke.ContourArea(contours[i]);
-                if(tempArea>largestArea)
+                tempArea = CvInvoke.ContourArea(contours[i]);
+                if (tempArea > largestArea)
                 {
                     largestArea = tempArea;
                     largestContourIndex = i;
                 }
             }
 
-            CvInvoke.DrawContours(lineImage, contours, largestContourIndex, new MCvScalar(0.0), 2);
-            lineImageBox.Image = lineImage;
-            Mat matrixMcMatrix = new Mat();
-            Mat lineImage2 = lineImage;
-            //Mat croped = new Mat(lineImage2, new Rectangle(0, 0, 2048, 2048));
-            //CvInvoke.GetRotationMatrix2D(new Point(lineImage2.Cols / 2, lineImage2.Rows / 2), -90, 1, matrixMcMatrix);            
-            //CvInvoke.WarpAffine(lineImage2, lineImage2, matrixMcMatrix, lineImage.Size);                      
-            //foreach (LineSegment2D line in boxEdges)
-            //  CvInvoke.Line(lineImage, line.P1, line.P2, new MCvScalar(0, 0, 255), 2);
+            //CvInvoke.DrawContours(lineImage, contours, largestContourIndex, new MCvScalar(0.0), 2);
+            VectorOfVectorOfPoint convexCOI = new VectorOfVectorOfPoint(1);
+            CvInvoke.ConvexHull(contours[largestContourIndex], convexCOI[0]);
+            CvInvoke.ApproxPolyDP(convexCOI[0], convexCOI[0], 100, true);
+            CvInvoke.DrawContours(lineImage, convexCOI, 0, new MCvScalar(0.0), 3);
+
+
+            lineImageBox.Image = lineImage;            
+            finalImageBox.Image = colorImage;
+
+            this.Text = convexCOI[0].Size.ToString();
         }
 
         private void lineImageBox_Click(object sender, EventArgs e)
@@ -89,10 +85,7 @@ namespace _3Dekeystoner
 
         private void nextContourToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            lineImage.SetTo(new MCvScalar(0.0));
-            CvInvoke.DrawContours(lineImage, contours, contourCount, new MCvScalar(255, 0, 0), 2);
 
-            lineImageBox.Image = lineImage;
         }
     }
 }
