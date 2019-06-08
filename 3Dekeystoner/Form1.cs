@@ -121,6 +121,8 @@ namespace _3Dekeystoner
                 colorImage = new Mat(openJPG.FileName);
             }
 
+            toolStripStatusLabel1.Text = openJPG.FileName;
+
             imageBox1.Image = colorImage;
             thresholdImage = new Mat();
             
