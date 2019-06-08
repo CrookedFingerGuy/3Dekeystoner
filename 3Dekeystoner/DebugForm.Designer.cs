@@ -1,6 +1,6 @@
 ﻿namespace _3Dekeystoner
 {
-    partial class Form1
+    partial class DebugForm
     {
         /// <summary>
         /// Required designer variable.
@@ -76,7 +76,7 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(112, 22);
             this.toolStripMenuItem2.Text = "&Open...";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
@@ -198,14 +198,15 @@
             this.imageBox6.TabIndex = 2;
             this.imageBox6.TabStop = false;
             // 
-            // Form1
+            // DebugForm
             // 
             this.ClientSize = new System.Drawing.Size(1012, 559);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip2);
             this.MainMenuStrip = this.menuStrip2;
-            this.Name = "Form1";
+            this.Name = "DebugForm";
+            this.Text = "Image Processing Debug Window";
             this.menuStrip2.ResumeLayout(false);
             this.menuStrip2.PerformLayout();
             this.statusStrip1.ResumeLayout(false);

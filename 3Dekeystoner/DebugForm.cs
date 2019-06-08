@@ -15,7 +15,7 @@ using Emgu.CV.Util;
 
 namespace _3Dekeystoner
 {
-    public partial class Form1 : Form
+    public partial class DebugForm : Form
     {
         public Mat colorImage;
         public Mat thresholdImage;
@@ -26,7 +26,7 @@ namespace _3Dekeystoner
         public VectorOfVectorOfPoint contours;
         public int contourCount;
 
-        public Form1()
+        public DebugForm()
         {
             InitializeComponent();
         }
