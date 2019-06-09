@@ -40,7 +40,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.listView1 = new System.Windows.Forms.ListView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.tabControlFront = new System.Windows.Forms.TabControl();
+            this.tabControlSides = new System.Windows.Forms.TabControl();
             this.tabPageFront = new System.Windows.Forms.TabPage();
             this.imageBoxFront = new Emgu.CV.UI.ImageBox();
             this.tabPageBack = new System.Windows.Forms.TabPage();
@@ -61,10 +61,11 @@
             this.PreviewImage = new Emgu.CV.UI.ImageBox();
             this.MappedPreview = new Emgu.CV.UI.ImageBox();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.buttonGuess = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.tabControlFront.SuspendLayout();
+            this.tabControlSides.SuspendLayout();
             this.tabPageFront.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageBoxFront)).BeginInit();
             this.tabPageBack.SuspendLayout();
@@ -130,7 +131,8 @@
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1});
+            this.toolStripButton1,
+            this.buttonGuess});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1252, 25);
@@ -153,9 +155,10 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 72.22222F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 305F));
             this.tableLayoutPanel1.Controls.Add(this.listView1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.tabControlFront, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tabControlSides, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 2, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.ImeMode = System.Windows.Forms.ImeMode.On;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 49);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
@@ -175,6 +178,7 @@
             this.listView1.Size = new System.Drawing.Size(253, 598);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.listView1_ItemDrag);
             this.listView1.DragEnter += new System.Windows.Forms.DragEventHandler(this.listView1_DragEnter);
             // 
             // imageList1
@@ -183,23 +187,23 @@
             this.imageList1.ImageSize = new System.Drawing.Size(64, 64);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // tabControlFront
+            // tabControlSides
             // 
-            this.tabControlFront.AllowDrop = true;
-            this.tabControlFront.Controls.Add(this.tabPageFront);
-            this.tabControlFront.Controls.Add(this.tabPageBack);
-            this.tabControlFront.Controls.Add(this.tabPageLeft);
-            this.tabControlFront.Controls.Add(this.tabPageRight);
-            this.tabControlFront.Controls.Add(this.tabPageTop);
-            this.tabControlFront.Controls.Add(this.tabPageBottom);
-            this.tabControlFront.Controls.Add(this.tabPageFlapLeft);
-            this.tabControlFront.Controls.Add(this.tabPageFlapRight);
-            this.tabControlFront.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControlFront.Location = new System.Drawing.Point(268, 6);
-            this.tabControlFront.Name = "tabControlFront";
-            this.tabControlFront.SelectedIndex = 0;
-            this.tabControlFront.Size = new System.Drawing.Size(669, 598);
-            this.tabControlFront.TabIndex = 1;
+            this.tabControlSides.AllowDrop = true;
+            this.tabControlSides.Controls.Add(this.tabPageFront);
+            this.tabControlSides.Controls.Add(this.tabPageBack);
+            this.tabControlSides.Controls.Add(this.tabPageLeft);
+            this.tabControlSides.Controls.Add(this.tabPageRight);
+            this.tabControlSides.Controls.Add(this.tabPageTop);
+            this.tabControlSides.Controls.Add(this.tabPageBottom);
+            this.tabControlSides.Controls.Add(this.tabPageFlapLeft);
+            this.tabControlSides.Controls.Add(this.tabPageFlapRight);
+            this.tabControlSides.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlSides.Location = new System.Drawing.Point(268, 6);
+            this.tabControlSides.Name = "tabControlSides";
+            this.tabControlSides.SelectedIndex = 0;
+            this.tabControlSides.Size = new System.Drawing.Size(669, 598);
+            this.tabControlSides.TabIndex = 1;
             // 
             // tabPageFront
             // 
@@ -384,6 +388,7 @@
             // 
             // PreviewImage
             // 
+            this.PreviewImage.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.PreviewImage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PreviewImage.Location = new System.Drawing.Point(3, 3);
             this.PreviewImage.Name = "PreviewImage";
@@ -394,6 +399,7 @@
             // 
             // MappedPreview
             // 
+            this.MappedPreview.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.MappedPreview.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MappedPreview.Location = new System.Drawing.Point(3, 207);
             this.MappedPreview.Name = "MappedPreview";
@@ -412,9 +418,18 @@
             this.toolStripButton1.Text = "Select";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
+            // buttonGuess
+            // 
+            this.buttonGuess.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.buttonGuess.Image = ((System.Drawing.Image)(resources.GetObject("buttonGuess.Image")));
+            this.buttonGuess.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonGuess.Name = "buttonGuess";
+            this.buttonGuess.Size = new System.Drawing.Size(42, 22);
+            this.buttonGuess.Text = "Guess";
+            this.buttonGuess.Click += new System.EventHandler(this.buttonGuess_Click);
+            // 
             // MainBoxTextureEditForm
             // 
-            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1252, 681);
@@ -422,6 +437,7 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
+            this.ImeMode = System.Windows.Forms.ImeMode.On;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainBoxTextureEditForm";
             this.Text = "3D Game Box Maker";
@@ -430,7 +446,7 @@
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.tabControlFront.ResumeLayout(false);
+            this.tabControlSides.ResumeLayout(false);
             this.tabPageFront.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imageBoxFront)).EndInit();
             this.tabPageBack.ResumeLayout(false);
@@ -464,7 +480,7 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.TabControl tabControlFront;
+        private System.Windows.Forms.TabControl tabControlSides;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private Emgu.CV.UI.ImageBox PreviewImage;
         private Emgu.CV.UI.ImageBox MappedPreview;
@@ -488,5 +504,6 @@
         private System.Windows.Forms.ToolStripMenuItem openFilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton buttonGuess;
     }
 }
