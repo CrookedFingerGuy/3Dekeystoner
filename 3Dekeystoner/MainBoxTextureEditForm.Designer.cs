@@ -36,6 +36,8 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.buttonGuess = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.listView1 = new System.Windows.Forms.ListView();
@@ -60,8 +62,6 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.PreviewImage = new Emgu.CV.UI.ImageBox();
             this.MappedPreview = new Emgu.CV.UI.ImageBox();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.buttonGuess = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -94,6 +94,7 @@
             this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(0);
             this.menuStrip1.Size = new System.Drawing.Size(1252, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
@@ -104,7 +105,7 @@
             this.openFilesToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 24);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // openFilesToolStripMenuItem
@@ -125,7 +126,7 @@
             // 
             this.aboutToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 24);
             this.aboutToolStripMenuItem.Text = "About";
             // 
             // toolStrip1
@@ -138,6 +139,26 @@
             this.toolStrip1.Size = new System.Drawing.Size(1252, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(42, 22);
+            this.toolStripButton1.Text = "Select";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // buttonGuess
+            // 
+            this.buttonGuess.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.buttonGuess.Image = ((System.Drawing.Image)(resources.GetObject("buttonGuess.Image")));
+            this.buttonGuess.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonGuess.Name = "buttonGuess";
+            this.buttonGuess.Size = new System.Drawing.Size(42, 22);
+            this.buttonGuess.Text = "Guess";
+            this.buttonGuess.Click += new System.EventHandler(this.buttonGuess_Click);
             // 
             // statusStrip1
             // 
@@ -221,6 +242,7 @@
             this.imageBoxFront.Dock = System.Windows.Forms.DockStyle.Fill;
             this.imageBoxFront.FunctionalMode = Emgu.CV.UI.ImageBox.FunctionalModeOption.Minimum;
             this.imageBoxFront.Location = new System.Drawing.Point(3, 3);
+            this.imageBoxFront.Margin = new System.Windows.Forms.Padding(0);
             this.imageBoxFront.Name = "imageBoxFront";
             this.imageBoxFront.Size = new System.Drawing.Size(655, 566);
             this.imageBoxFront.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -228,6 +250,10 @@
             this.imageBoxFront.TabStop = false;
             this.imageBoxFront.DragDrop += new System.Windows.Forms.DragEventHandler(this.imageBoxFront_DragDrop);
             this.imageBoxFront.DragEnter += new System.Windows.Forms.DragEventHandler(this.imageBoxFront_DragEnter);
+            this.imageBoxFront.Paint += new System.Windows.Forms.PaintEventHandler(this.imageBoxFront_Paint);
+            this.imageBoxFront.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imageBoxFront_MouseDown);
+            this.imageBoxFront.MouseMove += new System.Windows.Forms.MouseEventHandler(this.imageBoxFront_MouseMove);
+            this.imageBoxFront.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imageBoxFront_MouseUp);
             // 
             // tabPageBack
             // 
@@ -288,6 +314,7 @@
             this.imageBoxRight.Size = new System.Drawing.Size(661, 572);
             this.imageBoxRight.TabIndex = 2;
             this.imageBoxRight.TabStop = false;
+            this.imageBoxRight.Paint += new System.Windows.Forms.PaintEventHandler(this.imageBoxRight_Paint);
             // 
             // tabPageTop
             // 
@@ -396,6 +423,7 @@
             this.PreviewImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.PreviewImage.TabIndex = 2;
             this.PreviewImage.TabStop = false;
+            this.PreviewImage.LoadCompleted += new System.ComponentModel.AsyncCompletedEventHandler(this.PreviewImage_LoadCompleted);
             // 
             // MappedPreview
             // 
@@ -407,26 +435,6 @@
             this.MappedPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.MappedPreview.TabIndex = 2;
             this.MappedPreview.TabStop = false;
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(42, 22);
-            this.toolStripButton1.Text = "Select";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
-            // 
-            // buttonGuess
-            // 
-            this.buttonGuess.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.buttonGuess.Image = ((System.Drawing.Image)(resources.GetObject("buttonGuess.Image")));
-            this.buttonGuess.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonGuess.Name = "buttonGuess";
-            this.buttonGuess.Size = new System.Drawing.Size(42, 22);
-            this.buttonGuess.Text = "Guess";
-            this.buttonGuess.Click += new System.EventHandler(this.buttonGuess_Click);
             // 
             // MainBoxTextureEditForm
             // 
