@@ -391,5 +391,11 @@ namespace _3Dekeystoner
             dragging = false;
             activePoint = -1;
         }
+
+        private void cVStepsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DebugForm df= new DebugForm();
+            df.Show();
+        }
     }
 }
