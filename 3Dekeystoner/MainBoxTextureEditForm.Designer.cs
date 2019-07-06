@@ -64,6 +64,9 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.PreviewImage = new Emgu.CV.UI.ImageBox();
             this.MappedPreview = new Emgu.CV.UI.ImageBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnRotateCW = new System.Windows.Forms.Button();
+            this.btnRotateCCW = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -87,6 +90,7 @@
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PreviewImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MappedPreview)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -243,6 +247,7 @@
             this.tabControlSides.SelectedIndex = 0;
             this.tabControlSides.Size = new System.Drawing.Size(669, 598);
             this.tabControlSides.TabIndex = 1;
+            this.tabControlSides.SelectedIndexChanged += new System.EventHandler(this.tabControlSides_SelectedIndexChanged);
             // 
             // tabPageFront
             // 
@@ -319,9 +324,9 @@
             this.imageBoxLeft.Location = new System.Drawing.Point(0, 0);
             this.imageBoxLeft.Name = "imageBoxLeft";
             this.imageBoxLeft.Size = new System.Drawing.Size(661, 572);
+            this.imageBoxLeft.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.imageBoxLeft.TabIndex = 2;
             this.imageBoxLeft.TabStop = false;
-            this.imageBoxLeft.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.imageBoxLeft.DragDrop += new System.Windows.Forms.DragEventHandler(this.imageBoxLeft_DragDrop);
             this.imageBoxLeft.DragEnter += new System.Windows.Forms.DragEventHandler(this.imageBox_DragEnter);
             this.imageBoxLeft.Paint += new System.Windows.Forms.PaintEventHandler(this.imageBox_Paint);
@@ -346,9 +351,9 @@
             this.imageBoxRight.Location = new System.Drawing.Point(0, 0);
             this.imageBoxRight.Name = "imageBoxRight";
             this.imageBoxRight.Size = new System.Drawing.Size(661, 572);
+            this.imageBoxRight.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.imageBoxRight.TabIndex = 2;
             this.imageBoxRight.TabStop = false;
-            this.imageBoxRight.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.imageBoxRight.DragDrop += new System.Windows.Forms.DragEventHandler(this.imageBoxRight_DragDrop);
             this.imageBoxRight.DragEnter += new System.Windows.Forms.DragEventHandler(this.imageBox_DragEnter);
             this.imageBoxRight.Paint += new System.Windows.Forms.PaintEventHandler(this.imageBox_Paint);
@@ -373,9 +378,9 @@
             this.imageBoxTop.Location = new System.Drawing.Point(0, 0);
             this.imageBoxTop.Name = "imageBoxTop";
             this.imageBoxTop.Size = new System.Drawing.Size(661, 572);
+            this.imageBoxTop.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.imageBoxTop.TabIndex = 2;
             this.imageBoxTop.TabStop = false;
-            this.imageBoxTop.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.imageBoxTop.DragDrop += new System.Windows.Forms.DragEventHandler(this.imageBoxTop_DragDrop);
             this.imageBoxTop.DragEnter += new System.Windows.Forms.DragEventHandler(this.imageBox_DragEnter);
             this.imageBoxTop.Paint += new System.Windows.Forms.PaintEventHandler(this.imageBox_Paint);
@@ -400,9 +405,9 @@
             this.imageBoxBottom.Location = new System.Drawing.Point(0, 0);
             this.imageBoxBottom.Name = "imageBoxBottom";
             this.imageBoxBottom.Size = new System.Drawing.Size(661, 572);
+            this.imageBoxBottom.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.imageBoxBottom.TabIndex = 2;
             this.imageBoxBottom.TabStop = false;
-            this.imageBoxBottom.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.imageBoxBottom.DragDrop += new System.Windows.Forms.DragEventHandler(this.imageBoxBottom_DragDrop);
             this.imageBoxBottom.DragEnter += new System.Windows.Forms.DragEventHandler(this.imageBox_DragEnter);
             this.imageBoxBottom.Paint += new System.Windows.Forms.PaintEventHandler(this.imageBox_Paint);
@@ -427,9 +432,9 @@
             this.imageBoxFlapLeft.Location = new System.Drawing.Point(0, 0);
             this.imageBoxFlapLeft.Name = "imageBoxFlapLeft";
             this.imageBoxFlapLeft.Size = new System.Drawing.Size(661, 572);
+            this.imageBoxFlapLeft.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.imageBoxFlapLeft.TabIndex = 2;
             this.imageBoxFlapLeft.TabStop = false;
-            this.imageBoxFlapLeft.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.imageBoxFlapLeft.DragDrop += new System.Windows.Forms.DragEventHandler(this.imageBoxFlapLeft_DragDrop);
             this.imageBoxFlapLeft.DragEnter += new System.Windows.Forms.DragEventHandler(this.imageBox_DragEnter);
             this.imageBoxFlapLeft.Paint += new System.Windows.Forms.PaintEventHandler(this.imageBox_Paint);
@@ -454,9 +459,9 @@
             this.imageBoxFlapRight.Location = new System.Drawing.Point(0, 0);
             this.imageBoxFlapRight.Name = "imageBoxFlapRight";
             this.imageBoxFlapRight.Size = new System.Drawing.Size(661, 572);
+            this.imageBoxFlapRight.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.imageBoxFlapRight.TabIndex = 2;
             this.imageBoxFlapRight.TabStop = false;
-            this.imageBoxFlapRight.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.imageBoxFlapRight.DragDrop += new System.Windows.Forms.DragEventHandler(this.imageBoxFlapRight_DragDrop);
             this.imageBoxFlapRight.DragEnter += new System.Windows.Forms.DragEventHandler(this.imageBox_DragEnter);
             this.imageBoxFlapRight.Paint += new System.Windows.Forms.PaintEventHandler(this.imageBox_Paint);
@@ -471,6 +476,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Controls.Add(this.PreviewImage, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.MappedPreview, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.panel1, 0, 2);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(946, 6);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -503,6 +509,38 @@
             this.MappedPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.MappedPreview.TabIndex = 2;
             this.MappedPreview.TabStop = false;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnRotateCCW);
+            this.panel1.Controls.Add(this.btnRotateCW);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(3, 411);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(294, 184);
+            this.panel1.TabIndex = 3;
+            // 
+            // btnRotateCW
+            // 
+            this.btnRotateCW.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRotateCW.BackgroundImage")));
+            this.btnRotateCW.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRotateCW.Location = new System.Drawing.Point(3, 3);
+            this.btnRotateCW.Name = "btnRotateCW";
+            this.btnRotateCW.Size = new System.Drawing.Size(35, 35);
+            this.btnRotateCW.TabIndex = 4;
+            this.btnRotateCW.UseVisualStyleBackColor = true;
+            this.btnRotateCW.Click += new System.EventHandler(this.btnRotateCW_Click);
+            // 
+            // btnRotateCCW
+            // 
+            this.btnRotateCCW.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRotateCCW.BackgroundImage")));
+            this.btnRotateCCW.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRotateCCW.Location = new System.Drawing.Point(44, 3);
+            this.btnRotateCCW.Name = "btnRotateCCW";
+            this.btnRotateCCW.Size = new System.Drawing.Size(35, 35);
+            this.btnRotateCCW.TabIndex = 5;
+            this.btnRotateCCW.UseVisualStyleBackColor = true;
+            this.btnRotateCCW.Click += new System.EventHandler(this.btnRotateCCW_Click);
             // 
             // MainBoxTextureEditForm
             // 
@@ -542,6 +580,7 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PreviewImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MappedPreview)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -583,5 +622,8 @@
         private System.Windows.Forms.ToolStripButton buttonGuess;
         private System.Windows.Forms.ToolStripMenuItem debugToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cVStepsToolStripMenuItem;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnRotateCCW;
+        private System.Windows.Forms.Button btnRotateCW;
     }
 }

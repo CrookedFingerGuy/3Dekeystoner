@@ -36,7 +36,7 @@ namespace _3Dekeystoner
             uvEditData = new UVEditTabPageData[tabControlSides.TabCount];
             for(int i=0;i<tabControlSides.TabCount;i++)
             {
-                uvEditData[i]=new UVEditTabPageData();
+                uvEditData[i]=new UVEditTabPageData(i);
             }
         }
 
@@ -60,11 +60,10 @@ namespace _3Dekeystoner
         }
 
         private void buttonGuess_Click(object sender, EventArgs e)
-        {
-            uvEditData[tabControlSides.SelectedIndex].handel_GuessButtonClick();
-            PreviewImage.Image = (Mat)uvEditData[tabControlSides.SelectedIndex].finalImage;
+        {            
+            PreviewImage.Image = uvEditData[tabControlSides.SelectedIndex].handel_GuessButtonClick();
             PreviewImage.Invalidate();
-            imageBoxFront.Invalidate();
+            tabControlSides.Invalidate();
         }
 
 
@@ -203,6 +202,33 @@ namespace _3Dekeystoner
         private void imageBoxFlapRight_DragDrop(object sender, DragEventArgs e)
         {
             imageBoxFlapRight.Image = uvEditData[tabControlSides.SelectedIndex].handle_DragDrop(sender, e);
+        }
+
+        private void tabControlSides_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(uvEditData[tabControlSides.SelectedIndex].finalImage!=null)
+            {
+                PreviewImage.Image = uvEditData[tabControlSides.SelectedIndex].finalImage;
+                PreviewImage.Invalidate();
+            }
+        }
+
+        private void btnRotateCW_Click(object sender, EventArgs e)
+        {
+            if(uvEditData[tabControlSides.SelectedIndex].finalImage!=null)
+            {
+                uvEditData[tabControlSides.SelectedIndex].handle_RotateCW();
+                PreviewImage.Invalidate();
+            }
+        }
+
+        private void btnRotateCCW_Click(object sender, EventArgs e)
+        {
+            if (uvEditData[tabControlSides.SelectedIndex].finalImage != null)
+            {
+                uvEditData[tabControlSides.SelectedIndex].handle_RotateCCW();
+                PreviewImage.Invalidate();
+            }
         }
     }
 }

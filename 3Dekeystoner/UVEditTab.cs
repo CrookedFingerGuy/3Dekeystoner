@@ -12,12 +12,13 @@ using Emgu.CV.Util;
 
 namespace _3Dekeystoner
 {
+    public enum BoxTextureFile { BOXFRONT,BOXBACK,BOXSIDES,BOXFLAPLEFT,BOXFLAPRIGHT}
     public class UVEditTabPageData
     {
         public Mat rawPhoto;               //Unedited photo
         public Mat finalImage;             //Image after the perspective adjustments and cropping are applied
-        public int outputHeight;           //Height of the image after the perspective adjustments
         public int outputWidth;            //Width of the image after the perspective adjustments
+        public int outputHeight;           //Height of the image after the perspective adjustments
         public int outputX;                //X location on the texture after the perspective adjustments are applied
         public int outputY;                //Y location on the texture after the perspective adjustments are applied
         public Point[] uvCorners;          //4 points that mark the edge of the area that will become the texture
@@ -26,12 +27,12 @@ namespace _3Dekeystoner
         public bool dragging;              //Is the mouse currently dragging on the tab
         public bool drawing;               //Is the tab currently computing what to draw/activly drawing
         public string fileName;            //Location of the undeited photo in the file system
+        public BoxTextureFile btf;
 
-        public UVEditTabPageData()
+        public UVEditTabPageData(int tabIndex)
         {
             finalImage = new Mat();
             rawPhoto = new Mat();
-            //uvCorners = new Point[4];
             uvCorners = new Point[] {new Point(50, 50),
                                         new Point(50, 350),
                                         new Point(350, 350),
@@ -40,6 +41,81 @@ namespace _3Dekeystoner
             currentPoint = new Point(0, 0);
             drawing = false;
             dragging = false;
+            switch(tabIndex)
+            {
+                case 0:
+                    {
+                        outputWidth = 2048;
+                        outputHeight = 2048;
+                        outputX = 0;
+                        outputY = 0;
+                        btf = BoxTextureFile.BOXFRONT;
+                    }
+                    break;
+                case 1:
+                    {
+                        outputWidth = 2048;
+                        outputHeight = 2048;
+                        outputX = 0;
+                        outputY = 0;
+                        btf = BoxTextureFile.BOXBACK;
+                    }
+                    break;
+                case 2:
+                    {
+                        outputWidth = 512;
+                        outputHeight = 2048;
+                        outputX = 512;
+                        outputY = 0;
+                        btf = BoxTextureFile.BOXSIDES;
+                    }
+                    break;
+                case 3:
+                    {
+                        outputWidth = 512;
+                        outputHeight = 2048;
+                        outputX = 1536;
+                        outputY = 0;
+                        btf = BoxTextureFile.BOXSIDES;
+                    }
+                    break;
+                case 4:
+                    {
+                        outputWidth = 512;
+                        outputHeight = 2048;
+                        outputX = 0;
+                        outputY = 0;
+                        btf = BoxTextureFile.BOXSIDES;
+                    }
+                    break;
+                case 5:
+                    {
+                        outputWidth = 512;
+                        outputHeight = 2048;
+                        outputX = 1024;
+                        outputY = 0;
+                        btf = BoxTextureFile.BOXSIDES;
+                    }
+                    break;
+                case 6:
+                    {
+                        outputWidth = 2048;
+                        outputHeight = 2048;
+                        outputX = 0;
+                        outputY = 0;
+                        btf = BoxTextureFile.BOXFLAPLEFT;
+                    }
+                    break;
+                case 7:
+                    {
+                        outputWidth = 2048;
+                        outputHeight = 2048;
+                        outputX = 0;
+                        outputY = 0;
+                        btf = BoxTextureFile.BOXFLAPRIGHT;
+                    }
+                    break;
+            }
         }
 
         public Mat handle_DragDrop(object sender,DragEventArgs e)
@@ -110,7 +186,7 @@ namespace _3Dekeystoner
                                         new Point(convexCOI[0].ToArray().ElementAt<Point>(3).X, convexCOI[0].ToArray().ElementAt<Point>(3).Y)};
 
             Mat pMatrix = new Mat();
-            PointF[] temp = new PointF[] { new PointF(2048, 0), new PointF(2048, 2048), new PointF(0, 2048), new PointF(0, 0) };
+            PointF[] temp = new PointF[] { new PointF(outputWidth, 0), new PointF(outputWidth, outputHeight), new PointF(0, outputHeight), new PointF(0, 0) };
 
 
 
@@ -128,12 +204,9 @@ namespace _3Dekeystoner
                 CvInvoke.WarpPerspective(rawPhoto, workingImage, pMatrix, rawPhoto.Size);
             }
             workingImage.CopyTo(finalImage);
-            Mat cropped = new Mat(finalImage, new Rectangle(0, 0, 2048, 2048));
-            CvInvoke.GetRotationMatrix2D(new Point(cropped.Cols / 2, cropped.Rows / 2), -90, 1, pMatrix);
-            CvInvoke.WarpAffine(cropped, cropped, pMatrix, cropped.Size);
+            Mat cropped = new Mat(finalImage, new Rectangle(0, 0, outputWidth, outputHeight));
 
             finalImage = cropped;
-
             return finalImage;
         }
 
@@ -195,7 +268,7 @@ namespace _3Dekeystoner
             Mat workingImage = rawPhoto;
 
             Mat pMatrix = new Mat();
-            PointF[] temp = new PointF[] { new PointF(2048, 0), new PointF(2048, 2048), new PointF(0, 2048), new PointF(0, 0) };
+            PointF[] temp = new PointF[] { new PointF(outputWidth, 0), new PointF(outputWidth, outputHeight), new PointF(0, outputHeight), new PointF(0, 0) };
 
             Mat finalImage = new Mat();
 
@@ -211,9 +284,7 @@ namespace _3Dekeystoner
             pMatrix = CvInvoke.GetPerspectiveTransform(coit, temp);
             CvInvoke.WarpPerspective(workingImage, finalImage, pMatrix, workingImage.Size);
 
-            Mat cropped = new Mat(finalImage, new Rectangle(0, 0, 2048, 2048));
-            CvInvoke.GetRotationMatrix2D(new Point(cropped.Cols / 2, cropped.Rows / 2), -90, 1, pMatrix);
-            CvInvoke.WarpAffine(cropped, cropped, pMatrix, cropped.Size);
+            Mat cropped = new Mat(finalImage, new Rectangle(0, 0, outputWidth, outputHeight));
 
             Program.mForm.PreviewImage.Image=cropped;
             Program.mForm.PreviewImage.Invalidate();
@@ -314,6 +385,28 @@ namespace _3Dekeystoner
             }
             dragging = false;
             activePoint = -1;
+
+            finalImage = (Mat)Program.mForm.PreviewImage.Image;
+        }
+
+        public void handle_RotateCCW()
+        {
+            Point tempPoint = uvCorners[0];
+            uvCorners[0] = uvCorners[1];
+            uvCorners[1] = uvCorners[2];
+            uvCorners[2] = uvCorners[3];
+            uvCorners[3] = tempPoint;
+            DistortPreviewImage();
+        }
+
+        public void handle_RotateCW()
+        {
+            Point tempPoint = uvCorners[3];
+            uvCorners[3] = uvCorners[2];
+            uvCorners[2] = uvCorners[1];
+            uvCorners[1] = uvCorners[0];
+            uvCorners[0] = tempPoint;
+            DistortPreviewImage();
         }
     }
 }
