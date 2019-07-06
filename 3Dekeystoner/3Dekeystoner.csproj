@@ -66,6 +66,12 @@
     <Compile Include="DebugForm.Designer.cs">
       <DependentUpon>DebugForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ExportTexturesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExportTexturesForm.Designer.cs">
+      <DependentUpon>ExportTexturesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainBoxTextureEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +83,9 @@
     <Compile Include="UVEditTab.cs" />
     <EmbeddedResource Include="DebugForm.resx">
       <DependentUpon>DebugForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExportTexturesForm.resx">
+      <DependentUpon>ExportTexturesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainBoxTextureEditForm.resx">
       <DependentUpon>MainBoxTextureEditForm.cs</DependentUpon>

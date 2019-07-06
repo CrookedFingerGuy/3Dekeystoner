@@ -397,6 +397,7 @@ namespace _3Dekeystoner
             uvCorners[2] = uvCorners[3];
             uvCorners[3] = tempPoint;
             DistortPreviewImage();
+            finalImage = (Mat)Program.mForm.PreviewImage.Image;
         }
 
         public void handle_RotateCW()
@@ -407,6 +408,7 @@ namespace _3Dekeystoner
             uvCorners[1] = uvCorners[0];
             uvCorners[0] = tempPoint;
             DistortPreviewImage();
+            finalImage = (Mat)Program.mForm.PreviewImage.Image;
         }
     }
 }

@@ -65,8 +65,9 @@
             this.PreviewImage = new Emgu.CV.UI.ImageBox();
             this.MappedPreview = new Emgu.CV.UI.ImageBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnRotateCW = new System.Windows.Forms.Button();
             this.btnRotateCCW = new System.Windows.Forms.Button();
+            this.btnRotateCW = new System.Windows.Forms.Button();
+            this.exportTexturesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -110,6 +111,7 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openFilesToolStripMenuItem,
+            this.exportTexturesToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 24);
@@ -118,14 +120,14 @@
             // openFilesToolStripMenuItem
             // 
             this.openFilesToolStripMenuItem.Name = "openFilesToolStripMenuItem";
-            this.openFilesToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.openFilesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openFilesToolStripMenuItem.Text = "Open Files... ";
             this.openFilesToolStripMenuItem.Click += new System.EventHandler(this.openFilesToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -520,6 +522,17 @@
             this.panel1.Size = new System.Drawing.Size(294, 184);
             this.panel1.TabIndex = 3;
             // 
+            // btnRotateCCW
+            // 
+            this.btnRotateCCW.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRotateCCW.BackgroundImage")));
+            this.btnRotateCCW.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRotateCCW.Location = new System.Drawing.Point(44, 3);
+            this.btnRotateCCW.Name = "btnRotateCCW";
+            this.btnRotateCCW.Size = new System.Drawing.Size(35, 35);
+            this.btnRotateCCW.TabIndex = 5;
+            this.btnRotateCCW.UseVisualStyleBackColor = true;
+            this.btnRotateCCW.Click += new System.EventHandler(this.btnRotateCCW_Click);
+            // 
             // btnRotateCW
             // 
             this.btnRotateCW.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRotateCW.BackgroundImage")));
@@ -531,16 +544,12 @@
             this.btnRotateCW.UseVisualStyleBackColor = true;
             this.btnRotateCW.Click += new System.EventHandler(this.btnRotateCW_Click);
             // 
-            // btnRotateCCW
+            // exportTexturesToolStripMenuItem
             // 
-            this.btnRotateCCW.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRotateCCW.BackgroundImage")));
-            this.btnRotateCCW.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnRotateCCW.Location = new System.Drawing.Point(44, 3);
-            this.btnRotateCCW.Name = "btnRotateCCW";
-            this.btnRotateCCW.Size = new System.Drawing.Size(35, 35);
-            this.btnRotateCCW.TabIndex = 5;
-            this.btnRotateCCW.UseVisualStyleBackColor = true;
-            this.btnRotateCCW.Click += new System.EventHandler(this.btnRotateCCW_Click);
+            this.exportTexturesToolStripMenuItem.Name = "exportTexturesToolStripMenuItem";
+            this.exportTexturesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exportTexturesToolStripMenuItem.Text = "Export Textures...";
+            this.exportTexturesToolStripMenuItem.Click += new System.EventHandler(this.exportTexturesToolStripMenuItem_Click);
             // 
             // MainBoxTextureEditForm
             // 
@@ -625,5 +634,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnRotateCCW;
         private System.Windows.Forms.Button btnRotateCW;
+        private System.Windows.Forms.ToolStripMenuItem exportTexturesToolStripMenuItem;
     }
 }

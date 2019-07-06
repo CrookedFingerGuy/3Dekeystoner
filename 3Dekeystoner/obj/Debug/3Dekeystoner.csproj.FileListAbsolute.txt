@@ -39,3 +39,4 @@ c:\users\chiz\source\repos\3Dekeystoner\3Dekeystoner\obj\Debug\3Dekeystoner.exe
 c:\users\chiz\source\repos\3Dekeystoner\3Dekeystoner\obj\Debug\3Dekeystoner.pdb
 C:\Users\Chiz\source\repos\3Dekeystoner\3Dekeystoner\obj\Debug\_3Dekeystoner.DebugForm.resources
 C:\Users\Chiz\source\repos\3Dekeystoner\3Dekeystoner\obj\Debug\_3Dekeystoner.MainBoxTextureEditForm.resources
+C:\Users\Chiz\source\repos\3Dekeystoner\3Dekeystoner\obj\Debug\_3Dekeystoner.ExportTexturesForm.resources

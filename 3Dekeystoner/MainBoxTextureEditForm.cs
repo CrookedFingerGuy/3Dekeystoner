@@ -230,5 +230,11 @@ namespace _3Dekeystoner
                 PreviewImage.Invalidate();
             }
         }
+
+        private void exportTexturesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ExportTexturesForm etForm = new ExportTexturesForm();
+            etForm.Show();
+        }
     }
 }
