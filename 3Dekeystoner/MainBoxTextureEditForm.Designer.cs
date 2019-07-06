@@ -35,6 +35,8 @@
             this.openFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.debugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cVStepsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.buttonGuess = new System.Windows.Forms.ToolStripButton();
@@ -62,8 +64,6 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.PreviewImage = new Emgu.CV.UI.ImageBox();
             this.MappedPreview = new Emgu.CV.UI.ImageBox();
-            this.debugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cVStepsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -114,14 +114,14 @@
             // openFilesToolStripMenuItem
             // 
             this.openFilesToolStripMenuItem.Name = "openFilesToolStripMenuItem";
-            this.openFilesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openFilesToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.openFilesToolStripMenuItem.Text = "Open Files... ";
             this.openFilesToolStripMenuItem.Click += new System.EventHandler(this.openFilesToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -131,6 +131,21 @@
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 24);
             this.aboutToolStripMenuItem.Text = "About";
+            // 
+            // debugToolStripMenuItem
+            // 
+            this.debugToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cVStepsToolStripMenuItem});
+            this.debugToolStripMenuItem.Name = "debugToolStripMenuItem";
+            this.debugToolStripMenuItem.Size = new System.Drawing.Size(63, 24);
+            this.debugToolStripMenuItem.Text = "Debug...";
+            // 
+            // cVStepsToolStripMenuItem
+            // 
+            this.cVStepsToolStripMenuItem.Name = "cVStepsToolStripMenuItem";
+            this.cVStepsToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.cVStepsToolStripMenuItem.Text = "CV Steps";
+            this.cVStepsToolStripMenuItem.Click += new System.EventHandler(this.cVStepsToolStripMenuItem_Click);
             // 
             // toolStrip1
             // 
@@ -252,11 +267,11 @@
             this.imageBoxFront.TabIndex = 2;
             this.imageBoxFront.TabStop = false;
             this.imageBoxFront.DragDrop += new System.Windows.Forms.DragEventHandler(this.imageBoxFront_DragDrop);
-            this.imageBoxFront.DragEnter += new System.Windows.Forms.DragEventHandler(this.imageBoxFront_DragEnter);
-            this.imageBoxFront.Paint += new System.Windows.Forms.PaintEventHandler(this.imageBoxFront_Paint);
-            this.imageBoxFront.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imageBoxFront_MouseDown);
-            this.imageBoxFront.MouseMove += new System.Windows.Forms.MouseEventHandler(this.imageBoxFront_MouseMove);
-            this.imageBoxFront.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imageBoxFront_MouseUp);
+            this.imageBoxFront.DragEnter += new System.Windows.Forms.DragEventHandler(this.imageBox_DragEnter);
+            this.imageBoxFront.Paint += new System.Windows.Forms.PaintEventHandler(this.imageBox_Paint);
+            this.imageBoxFront.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseDown);
+            this.imageBoxFront.MouseMove += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseMove);
+            this.imageBoxFront.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseUp);
             // 
             // tabPageBack
             // 
@@ -272,11 +287,19 @@
             // imageBoxBack
             // 
             this.imageBoxBack.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageBoxBack.FunctionalMode = Emgu.CV.UI.ImageBox.FunctionalModeOption.Minimum;
             this.imageBoxBack.Location = new System.Drawing.Point(3, 3);
             this.imageBoxBack.Name = "imageBoxBack";
             this.imageBoxBack.Size = new System.Drawing.Size(655, 566);
+            this.imageBoxBack.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.imageBoxBack.TabIndex = 2;
             this.imageBoxBack.TabStop = false;
+            this.imageBoxBack.DragDrop += new System.Windows.Forms.DragEventHandler(this.imageBoxBack_DragDrop);
+            this.imageBoxBack.DragEnter += new System.Windows.Forms.DragEventHandler(this.imageBox_DragEnter);
+            this.imageBoxBack.Paint += new System.Windows.Forms.PaintEventHandler(this.imageBox_Paint);
+            this.imageBoxBack.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseDown);
+            this.imageBoxBack.MouseMove += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseMove);
+            this.imageBoxBack.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseUp);
             // 
             // tabPageLeft
             // 
@@ -292,11 +315,19 @@
             // imageBoxLeft
             // 
             this.imageBoxLeft.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageBoxLeft.FunctionalMode = Emgu.CV.UI.ImageBox.FunctionalModeOption.Minimum;
             this.imageBoxLeft.Location = new System.Drawing.Point(0, 0);
             this.imageBoxLeft.Name = "imageBoxLeft";
             this.imageBoxLeft.Size = new System.Drawing.Size(661, 572);
             this.imageBoxLeft.TabIndex = 2;
             this.imageBoxLeft.TabStop = false;
+            this.imageBoxLeft.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.imageBoxLeft.DragDrop += new System.Windows.Forms.DragEventHandler(this.imageBoxLeft_DragDrop);
+            this.imageBoxLeft.DragEnter += new System.Windows.Forms.DragEventHandler(this.imageBox_DragEnter);
+            this.imageBoxLeft.Paint += new System.Windows.Forms.PaintEventHandler(this.imageBox_Paint);
+            this.imageBoxLeft.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseDown);
+            this.imageBoxLeft.MouseMove += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseMove);
+            this.imageBoxLeft.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseUp);
             // 
             // tabPageRight
             // 
@@ -317,7 +348,13 @@
             this.imageBoxRight.Size = new System.Drawing.Size(661, 572);
             this.imageBoxRight.TabIndex = 2;
             this.imageBoxRight.TabStop = false;
-            this.imageBoxRight.Paint += new System.Windows.Forms.PaintEventHandler(this.imageBoxRight_Paint);
+            this.imageBoxRight.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.imageBoxRight.DragDrop += new System.Windows.Forms.DragEventHandler(this.imageBoxRight_DragDrop);
+            this.imageBoxRight.DragEnter += new System.Windows.Forms.DragEventHandler(this.imageBox_DragEnter);
+            this.imageBoxRight.Paint += new System.Windows.Forms.PaintEventHandler(this.imageBox_Paint);
+            this.imageBoxRight.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseDown);
+            this.imageBoxRight.MouseMove += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseMove);
+            this.imageBoxRight.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseUp);
             // 
             // tabPageTop
             // 
@@ -338,6 +375,13 @@
             this.imageBoxTop.Size = new System.Drawing.Size(661, 572);
             this.imageBoxTop.TabIndex = 2;
             this.imageBoxTop.TabStop = false;
+            this.imageBoxTop.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.imageBoxTop.DragDrop += new System.Windows.Forms.DragEventHandler(this.imageBoxTop_DragDrop);
+            this.imageBoxTop.DragEnter += new System.Windows.Forms.DragEventHandler(this.imageBox_DragEnter);
+            this.imageBoxTop.Paint += new System.Windows.Forms.PaintEventHandler(this.imageBox_Paint);
+            this.imageBoxTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseDown);
+            this.imageBoxTop.MouseMove += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseMove);
+            this.imageBoxTop.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseUp);
             // 
             // tabPageBottom
             // 
@@ -358,6 +402,13 @@
             this.imageBoxBottom.Size = new System.Drawing.Size(661, 572);
             this.imageBoxBottom.TabIndex = 2;
             this.imageBoxBottom.TabStop = false;
+            this.imageBoxBottom.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.imageBoxBottom.DragDrop += new System.Windows.Forms.DragEventHandler(this.imageBoxBottom_DragDrop);
+            this.imageBoxBottom.DragEnter += new System.Windows.Forms.DragEventHandler(this.imageBox_DragEnter);
+            this.imageBoxBottom.Paint += new System.Windows.Forms.PaintEventHandler(this.imageBox_Paint);
+            this.imageBoxBottom.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseDown);
+            this.imageBoxBottom.MouseMove += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseMove);
+            this.imageBoxBottom.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseUp);
             // 
             // tabPageFlapLeft
             // 
@@ -378,6 +429,13 @@
             this.imageBoxFlapLeft.Size = new System.Drawing.Size(661, 572);
             this.imageBoxFlapLeft.TabIndex = 2;
             this.imageBoxFlapLeft.TabStop = false;
+            this.imageBoxFlapLeft.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.imageBoxFlapLeft.DragDrop += new System.Windows.Forms.DragEventHandler(this.imageBoxFlapLeft_DragDrop);
+            this.imageBoxFlapLeft.DragEnter += new System.Windows.Forms.DragEventHandler(this.imageBox_DragEnter);
+            this.imageBoxFlapLeft.Paint += new System.Windows.Forms.PaintEventHandler(this.imageBox_Paint);
+            this.imageBoxFlapLeft.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseDown);
+            this.imageBoxFlapLeft.MouseMove += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseMove);
+            this.imageBoxFlapLeft.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseUp);
             // 
             // tabPageFlapRight
             // 
@@ -398,6 +456,13 @@
             this.imageBoxFlapRight.Size = new System.Drawing.Size(661, 572);
             this.imageBoxFlapRight.TabIndex = 2;
             this.imageBoxFlapRight.TabStop = false;
+            this.imageBoxFlapRight.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.imageBoxFlapRight.DragDrop += new System.Windows.Forms.DragEventHandler(this.imageBoxFlapRight_DragDrop);
+            this.imageBoxFlapRight.DragEnter += new System.Windows.Forms.DragEventHandler(this.imageBox_DragEnter);
+            this.imageBoxFlapRight.Paint += new System.Windows.Forms.PaintEventHandler(this.imageBox_Paint);
+            this.imageBoxFlapRight.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseDown);
+            this.imageBoxFlapRight.MouseMove += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseMove);
+            this.imageBoxFlapRight.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseUp);
             // 
             // tableLayoutPanel2
             // 
@@ -438,21 +503,6 @@
             this.MappedPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.MappedPreview.TabIndex = 2;
             this.MappedPreview.TabStop = false;
-            // 
-            // debugToolStripMenuItem
-            // 
-            this.debugToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cVStepsToolStripMenuItem});
-            this.debugToolStripMenuItem.Name = "debugToolStripMenuItem";
-            this.debugToolStripMenuItem.Size = new System.Drawing.Size(63, 24);
-            this.debugToolStripMenuItem.Text = "Debug...";
-            // 
-            // cVStepsToolStripMenuItem
-            // 
-            this.cVStepsToolStripMenuItem.Name = "cVStepsToolStripMenuItem";
-            this.cVStepsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.cVStepsToolStripMenuItem.Text = "CV Steps";
-            this.cVStepsToolStripMenuItem.Click += new System.EventHandler(this.cVStepsToolStripMenuItem_Click);
             // 
             // MainBoxTextureEditForm
             // 
@@ -506,26 +556,26 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.TabControl tabControlSides;
+        public System.Windows.Forms.TabControl tabControlSides;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private Emgu.CV.UI.ImageBox PreviewImage;
-        private Emgu.CV.UI.ImageBox MappedPreview;
-        private System.Windows.Forms.TabPage tabPageFront;
-        private System.Windows.Forms.TabPage tabPageBack;
-        private Emgu.CV.UI.ImageBox imageBoxFront;
-        private Emgu.CV.UI.ImageBox imageBoxBack;
-        private System.Windows.Forms.TabPage tabPageLeft;
-        private Emgu.CV.UI.ImageBox imageBoxLeft;
-        private System.Windows.Forms.TabPage tabPageRight;
-        private Emgu.CV.UI.ImageBox imageBoxRight;
-        private System.Windows.Forms.TabPage tabPageTop;
-        private Emgu.CV.UI.ImageBox imageBoxTop;
-        private System.Windows.Forms.TabPage tabPageBottom;
-        private Emgu.CV.UI.ImageBox imageBoxBottom;
-        private System.Windows.Forms.TabPage tabPageFlapLeft;
-        private Emgu.CV.UI.ImageBox imageBoxFlapLeft;
-        private System.Windows.Forms.TabPage tabPageFlapRight;
-        private Emgu.CV.UI.ImageBox imageBoxFlapRight;
+        public Emgu.CV.UI.ImageBox PreviewImage;
+        public Emgu.CV.UI.ImageBox MappedPreview;
+        public System.Windows.Forms.TabPage tabPageFront;
+        public System.Windows.Forms.TabPage tabPageBack;
+        public Emgu.CV.UI.ImageBox imageBoxFront;
+        public Emgu.CV.UI.ImageBox imageBoxBack;
+        public System.Windows.Forms.TabPage tabPageLeft;
+        public Emgu.CV.UI.ImageBox imageBoxLeft;
+        public System.Windows.Forms.TabPage tabPageRight;
+        public Emgu.CV.UI.ImageBox imageBoxRight;
+        public System.Windows.Forms.TabPage tabPageTop;
+        public Emgu.CV.UI.ImageBox imageBoxTop;
+        public System.Windows.Forms.TabPage tabPageBottom;
+        public Emgu.CV.UI.ImageBox imageBoxBottom;
+        public System.Windows.Forms.TabPage tabPageFlapLeft;
+        public Emgu.CV.UI.ImageBox imageBoxFlapLeft;
+        public System.Windows.Forms.TabPage tabPageFlapRight;
+        public Emgu.CV.UI.ImageBox imageBoxFlapRight;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.ToolStripMenuItem openFilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;

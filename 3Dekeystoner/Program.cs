@@ -6,17 +6,22 @@ using System.Windows.Forms;
 
 namespace _3Dekeystoner
 {
-    static class Program
+    public class Program
     {
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
+        /// 
+        public static MainBoxTextureEditForm mForm;
+
+
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainBoxTextureEditForm());
+             mForm= new MainBoxTextureEditForm();
+            Application.Run(mForm);
         }
     }
 }
