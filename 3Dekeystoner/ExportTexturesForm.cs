@@ -28,7 +28,7 @@ namespace _3Dekeystoner
         public ExportTexturesForm()
         {
             InitializeComponent();
-            exportPath = "C:\\Users\\Chis\\Documents\\3DProjects\\Testing";
+            exportPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)+"\\3DProjects\\Testing";
             labelPath.Text = exportPath;
             if (Program.mForm.uvEditData[0].finalImage != null)
             {
@@ -48,9 +48,9 @@ namespace _3Dekeystoner
 
             if ((Program.mForm.uvEditData[2].finalImage != null)||(Program.mForm.uvEditData[3].finalImage != null))
             {
-                CvInvoke.HConcat(Program.mForm.uvEditData[4].finalImage, Program.mForm.uvEditData[2].finalImage, SidesFile);
+                CvInvoke.HConcat(Program.mForm.uvEditData[2].finalImage, Program.mForm.uvEditData[3].finalImage, SidesFile);
                 CvInvoke.HConcat(SidesFile, Program.mForm.uvEditData[5].finalImage, SidesFile);
-                CvInvoke.HConcat(SidesFile, Program.mForm.uvEditData[3].finalImage, SidesFile);
+                CvInvoke.HConcat(SidesFile, Program.mForm.uvEditData[4].finalImage, SidesFile);
                 ibExportSides.Image = SidesFile;
             }
 

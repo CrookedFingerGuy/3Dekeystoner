@@ -22,12 +22,14 @@ namespace _3Dekeystoner
         public int outputX;                //X location on the texture after the perspective adjustments are applied
         public int outputY;                //Y location on the texture after the perspective adjustments are applied
         public Point[] uvCorners;          //4 points that mark the edge of the area that will become the texture
+        public PointF[] mappedCorners;     //4 points that are the locations of the texture corners in the guide images
         public int activePoint;            //The index in uvCorners of the the currenly selected point
         public Point currentPoint;         //The coordinates of the currently selected point
         public bool dragging;              //Is the mouse currently dragging on the tab
         public bool drawing;               //Is the tab currently computing what to draw/activly drawing
         public string fileName;            //Location of the undeited photo in the file system
         public BoxTextureFile btf;
+
 
         public UVEditTabPageData(int tabIndex)
         {
@@ -50,6 +52,7 @@ namespace _3Dekeystoner
                         outputX = 0;
                         outputY = 0;
                         btf = BoxTextureFile.BOXFRONT;
+                        mappedCorners = new PointF[] { new PointF(224,87),new PointF(419,35),new PointF(244,334),new PointF(395, 267) };
                     }
                     break;
                 case 1:
@@ -59,6 +62,7 @@ namespace _3Dekeystoner
                         outputX = 0;
                         outputY = 0;
                         btf = BoxTextureFile.BOXBACK;
+                        mappedCorners = new PointF[] { new PointF(180, 27), new PointF(360, 66), new PointF(200, 289), new PointF(345, 364) };
                     }
                     break;
                 case 2:
@@ -68,6 +72,7 @@ namespace _3Dekeystoner
                         outputX = 512;
                         outputY = 0;
                         btf = BoxTextureFile.BOXSIDES;
+                        mappedCorners = new PointF[] { new PointF(360, 66), new PointF(403, 54), new PointF(345, 367), new PointF(385, 342) };
                     }
                     break;
                 case 3:
@@ -77,6 +82,7 @@ namespace _3Dekeystoner
                         outputX = 1536;
                         outputY = 0;
                         btf = BoxTextureFile.BOXSIDES;
+                        mappedCorners = new PointF[] { new PointF(360, 73), new PointF(399, 63), new PointF(348, 334), new PointF(382, 316) };
                     }
                     break;
                 case 4:
@@ -86,6 +92,8 @@ namespace _3Dekeystoner
                         outputX = 0;
                         outputY = 0;
                         btf = BoxTextureFile.BOXSIDES;
+                        //mappedCorners = new PointF[] { new PointF(144, 64), new PointF(493, 68) ,new PointF(136, 139), new PointF(500, 144) };
+                        mappedCorners = new PointF[] { new PointF(136, 139), new PointF(144, 64), new PointF(500, 144), new PointF(493, 68) };
                     }
                     break;
                 case 5:
@@ -95,6 +103,7 @@ namespace _3Dekeystoner
                         outputX = 1024;
                         outputY = 0;
                         btf = BoxTextureFile.BOXSIDES;
+                        mappedCorners = new PointF[] { new PointF(145, 320), new PointF(140, 248), new PointF(489, 325), new PointF(500, 255) };
                     }
                     break;
                 case 6:
@@ -104,6 +113,7 @@ namespace _3Dekeystoner
                         outputX = 0;
                         outputY = 0;
                         btf = BoxTextureFile.BOXFLAPLEFT;
+                        mappedCorners = new PointF[] { new PointF(130, 59), new PointF(311, 58), new PointF(146, 334), new PointF(311, 303) };
                     }
                     break;
                 case 7:
@@ -113,6 +123,7 @@ namespace _3Dekeystoner
                         outputX = 0;
                         outputY = 0;
                         btf = BoxTextureFile.BOXFLAPRIGHT;
+                        mappedCorners = new PointF[] { new PointF(308, 55), new PointF(415, 54), new PointF(305, 297), new PointF(403, 365)  };
                     }
                     break;
             }
@@ -288,6 +299,31 @@ namespace _3Dekeystoner
 
             Program.mForm.PreviewImage.Image=cropped;
             Program.mForm.PreviewImage.Invalidate();
+        }
+
+        public Bitmap DistortToMappedPreview(float wScale, float hScale)
+        {
+            Mat workingImage = new Mat();
+            finalImage.CopyTo(workingImage);
+
+            Mat pMatrix = new Mat();
+            PointF[] coit = new PointF[] { new PointF(0, 0), new PointF(outputWidth, 0), new PointF(0, outputHeight), new PointF(outputWidth, outputHeight) };
+
+
+            PointF[] temp = new PointF[4];
+            for (int i = 0; i < 4; i++)
+            {
+                temp[i].X=mappedCorners[i].X * wScale;
+                temp[i].Y=mappedCorners[i].Y * hScale;
+            }
+
+                pMatrix = CvInvoke.GetPerspectiveTransform(coit, temp);
+            CvInvoke.WarpPerspective(workingImage, workingImage, pMatrix, workingImage.Size);
+            Mat cropped = new Mat(workingImage, new Rectangle(0, 0, Program.mForm.MappedPreview.Width, Program.mForm.MappedPreview.Height));
+            Bitmap bitm = new Bitmap(cropped.Bitmap);
+            bitm.MakeTransparent(Color.Black);
+
+            return bitm;
         }
 
 

@@ -493,6 +493,7 @@
             // 
             this.PreviewImage.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.PreviewImage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PreviewImage.FunctionalMode = Emgu.CV.UI.ImageBox.FunctionalModeOption.Minimum;
             this.PreviewImage.Location = new System.Drawing.Point(3, 3);
             this.PreviewImage.Name = "PreviewImage";
             this.PreviewImage.Size = new System.Drawing.Size(294, 198);
@@ -505,12 +506,14 @@
             // 
             this.MappedPreview.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.MappedPreview.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MappedPreview.FunctionalMode = Emgu.CV.UI.ImageBox.FunctionalModeOption.Minimum;
             this.MappedPreview.Location = new System.Drawing.Point(3, 207);
             this.MappedPreview.Name = "MappedPreview";
             this.MappedPreview.Size = new System.Drawing.Size(294, 198);
             this.MappedPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.MappedPreview.TabIndex = 2;
             this.MappedPreview.TabStop = false;
+            this.MappedPreview.Paint += new System.Windows.Forms.PaintEventHandler(this.MappedPreview_Paint);
             // 
             // panel1
             // 

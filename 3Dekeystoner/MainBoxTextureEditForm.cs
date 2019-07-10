@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Resources;
 using Emgu.CV;
 using Emgu.CV.CvEnum;
 using Emgu.CV.Structure;
@@ -19,10 +20,23 @@ namespace _3Dekeystoner
     {       
         
         public UVEditTabPageData[] uvEditData;
+        public Mat rFront;
+        public Mat rBackAndLeft;
+        public Mat rRight;
+        public Mat rFlapsAndRight;
+        public Mat rTop;
+        public Mat rBottom;
 
         public MainBoxTextureEditForm()
         {
             InitializeComponent();
+            rFront = new Image<Bgra, byte>(Properties.Resources.Front).Mat;
+            rBackAndLeft = new Image<Bgra, byte>(Properties.Resources.BackAndLeft).Mat;
+            rFlapsAndRight = new Image<Bgra, byte>(Properties.Resources.FlapsAndRight).Mat;
+            rRight=new Image<Bgra, byte>(Properties.Resources.Right).Mat;
+            rTop = new Image<Bgra, byte>(Properties.Resources.Top).Mat;
+            rBottom = new Image<Bgra, byte>(Properties.Resources.Bottom).Mat;
+            MappedPreview.Image = rFront;
             imageBoxFront.AllowDrop = true;
             imageBoxBack.AllowDrop = true;
             imageBoxLeft.AllowDrop = true;
@@ -39,6 +53,7 @@ namespace _3Dekeystoner
                 uvEditData[i]=new UVEditTabPageData(i);
             }
         }
+
 
         private void openFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -206,7 +221,42 @@ namespace _3Dekeystoner
 
         private void tabControlSides_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(uvEditData[tabControlSides.SelectedIndex].finalImage!=null)
+            switch(tabControlSides.SelectedIndex)
+            {
+                case 0:
+                    {
+                        MappedPreview.Image = rFront;
+                    }
+                    break;
+                case 1:
+                case 2:
+                    {
+                        MappedPreview.Image = rBackAndLeft;
+                    }
+                    break;
+                case 3:
+                    {
+                        MappedPreview.Image = rRight;
+                    }
+                    break;
+                case 6:
+                case 7:
+                    {
+                        MappedPreview.Image = rFlapsAndRight;
+                    }
+                    break;
+                case 4:
+                    {
+                        MappedPreview.Image = rTop;
+                    }
+                    break;
+                case 5:
+                    {
+                        MappedPreview.Image = rBottom;
+                    }
+                    break;
+            }
+            if (uvEditData[tabControlSides.SelectedIndex].finalImage!=null)
             {
                 PreviewImage.Image = uvEditData[tabControlSides.SelectedIndex].finalImage;
                 PreviewImage.Invalidate();
@@ -235,6 +285,20 @@ namespace _3Dekeystoner
         {
             ExportTexturesForm etForm = new ExportTexturesForm();
             etForm.Show();
+        }
+
+        private void MappedPreview_Paint(object sender, PaintEventArgs e)
+        {
+            if (uvEditData[tabControlSides.SelectedIndex].finalImage.Bitmap != null)
+            {
+                Graphics g = e.Graphics;
+                Pen pen = new Pen(Color.Red);
+                float wScale = (float)((float)MappedPreview.Width / 600.0);
+                float hScale = (float)((float)MappedPreview.Height / 400.0);
+                float zoomScale = (float)((float)MappedPreview.Height / 198.0);//198 i MappedPreview.Height at the program start
+                g.DrawImage(uvEditData[tabControlSides.SelectedIndex].DistortToMappedPreview(wScale, hScale), 0, (MappedPreview.Height-MappedPreview.Height/zoomScale)/2, MappedPreview.Width, MappedPreview.Height/zoomScale);
+            }
+
         }
     }
 }
