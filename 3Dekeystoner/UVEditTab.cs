@@ -387,6 +387,7 @@ namespace _3Dekeystoner
                     drawing = true;
                     DistortPreviewImage();
                     Program.mForm.tabControlSides.SelectedTab.Refresh();
+                    Program.mForm.MappedPreview.Invalidate();
                     GC.Collect();
                     drawing = false;
                 }
@@ -415,6 +416,7 @@ namespace _3Dekeystoner
                     drawing = true;
                     DistortPreviewImage();
                     Program.mForm.tabControlSides.SelectedTab.Refresh();
+                    Program.mForm.MappedPreview.Invalidate();
                     GC.Collect();
                     drawing = false;
                 }

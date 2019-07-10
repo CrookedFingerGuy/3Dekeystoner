@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -82,11 +83,23 @@ namespace _3Dekeystoner
 
         private void btnExport_Click(object sender, EventArgs e)
         {
-            if(FrontFile!=null) FrontFile.Save(exportPath + "\\Box_Front.jpg");
-            if(BackFile!=null) BackFile.Save(exportPath + "\\Box_Back.jpg");
-            if(SidesFile!=null) SidesFile.Save(exportPath + "\\Box_Sides.jpg");
-            if(FlapLeftFile!=null) FlapLeftFile.Save(exportPath + "\\Box_Flap_Left.jpg");
-            if(FlapRightFile!=null) FlapRightFile.Save(exportPath + "\\Box_Flap_Right.jpg");
+            if (Directory.Exists(exportPath))
+            {
+                if (FrontFile != null) FrontFile.Save(exportPath + "\\Box_Front.jpg");
+                if (BackFile != null) BackFile.Save(exportPath + "\\Box_Back.jpg");
+                if (SidesFile != null) SidesFile.Save(exportPath + "\\Box_Sides.jpg");
+                if (FlapLeftFile != null) FlapLeftFile.Save(exportPath + "\\Box_Flap_Left.jpg");
+                if (FlapRightFile != null) FlapRightFile.Save(exportPath + "\\Box_Flap_Right.jpg");
+            }
+            else
+            {
+                button1_Click(sender, e);
+                if (FrontFile != null) FrontFile.Save(exportPath + "\\Box_Front.jpg");
+                if (BackFile != null) BackFile.Save(exportPath + "\\Box_Back.jpg");
+                if (SidesFile != null) SidesFile.Save(exportPath + "\\Box_Sides.jpg");
+                if (FlapLeftFile != null) FlapLeftFile.Save(exportPath + "\\Box_Flap_Left.jpg");
+                if (FlapRightFile != null) FlapRightFile.Save(exportPath + "\\Box_Flap_Right.jpg");
+            }
         }
     }
 }

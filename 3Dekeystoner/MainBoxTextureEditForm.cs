@@ -79,6 +79,7 @@ namespace _3Dekeystoner
             PreviewImage.Image = uvEditData[tabControlSides.SelectedIndex].handel_GuessButtonClick();
             PreviewImage.Invalidate();
             tabControlSides.Invalidate();
+            MappedPreview.Invalidate();
         }
 
 
@@ -260,6 +261,7 @@ namespace _3Dekeystoner
             {
                 PreviewImage.Image = uvEditData[tabControlSides.SelectedIndex].finalImage;
                 PreviewImage.Invalidate();
+                MappedPreview.Invalidate();
             }
         }
 
@@ -269,6 +271,7 @@ namespace _3Dekeystoner
             {
                 uvEditData[tabControlSides.SelectedIndex].handle_RotateCW();
                 PreviewImage.Invalidate();
+                MappedPreview.Invalidate();
             }
         }
 
@@ -278,6 +281,7 @@ namespace _3Dekeystoner
             {
                 uvEditData[tabControlSides.SelectedIndex].handle_RotateCCW();
                 PreviewImage.Invalidate();
+                MappedPreview.Invalidate();
             }
         }
 
