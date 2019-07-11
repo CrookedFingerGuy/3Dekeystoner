@@ -38,60 +38,63 @@
             this.debugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cVStepsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.buttonGuess = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.listView1 = new System.Windows.Forms.ListView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.tabControlSides = new System.Windows.Forms.TabControl();
             this.tabPageFront = new System.Windows.Forms.TabPage();
-            this.imageBoxFront = new Emgu.CV.UI.ImageBox();
             this.tabPageBack = new System.Windows.Forms.TabPage();
-            this.imageBoxBack = new Emgu.CV.UI.ImageBox();
             this.tabPageLeft = new System.Windows.Forms.TabPage();
-            this.imageBoxLeft = new Emgu.CV.UI.ImageBox();
             this.tabPageRight = new System.Windows.Forms.TabPage();
-            this.imageBoxRight = new Emgu.CV.UI.ImageBox();
             this.tabPageTop = new System.Windows.Forms.TabPage();
-            this.imageBoxTop = new Emgu.CV.UI.ImageBox();
             this.tabPageBottom = new System.Windows.Forms.TabPage();
-            this.imageBoxBottom = new Emgu.CV.UI.ImageBox();
             this.tabPageFlapLeft = new System.Windows.Forms.TabPage();
-            this.imageBoxFlapLeft = new Emgu.CV.UI.ImageBox();
             this.tabPageFlapRight = new System.Windows.Forms.TabPage();
-            this.imageBoxFlapRight = new Emgu.CV.UI.ImageBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.PreviewImage = new Emgu.CV.UI.ImageBox();
-            this.MappedPreview = new Emgu.CV.UI.ImageBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.exportTexturesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnMirrorVertical = new System.Windows.Forms.Button();
+            this.btnMirrorHorizontal = new System.Windows.Forms.Button();
             this.btnRotateCCW = new System.Windows.Forms.Button();
             this.btnRotateCW = new System.Windows.Forms.Button();
-            this.exportTexturesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.imageBoxFront = new Emgu.CV.UI.ImageBox();
+            this.imageBoxBack = new Emgu.CV.UI.ImageBox();
+            this.imageBoxLeft = new Emgu.CV.UI.ImageBox();
+            this.imageBoxRight = new Emgu.CV.UI.ImageBox();
+            this.imageBoxTop = new Emgu.CV.UI.ImageBox();
+            this.imageBoxBottom = new Emgu.CV.UI.ImageBox();
+            this.imageBoxFlapLeft = new Emgu.CV.UI.ImageBox();
+            this.imageBoxFlapRight = new Emgu.CV.UI.ImageBox();
+            this.PreviewImage = new Emgu.CV.UI.ImageBox();
+            this.MappedPreview = new Emgu.CV.UI.ImageBox();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.buttonGuess = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabControlSides.SuspendLayout();
             this.tabPageFront.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.imageBoxFront)).BeginInit();
             this.tabPageBack.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.imageBoxBack)).BeginInit();
             this.tabPageLeft.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.imageBoxLeft)).BeginInit();
             this.tabPageRight.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.imageBoxRight)).BeginInit();
             this.tabPageTop.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.imageBoxTop)).BeginInit();
             this.tabPageBottom.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.imageBoxBottom)).BeginInit();
             this.tabPageFlapLeft.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.imageBoxFlapLeft)).BeginInit();
             this.tabPageFlapRight.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.imageBoxFlapRight)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imageBoxFront)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageBoxBack)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageBoxLeft)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageBoxRight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageBoxTop)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageBoxBottom)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageBoxFlapLeft)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageBoxFlapRight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PreviewImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MappedPreview)).BeginInit();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -120,14 +123,14 @@
             // openFilesToolStripMenuItem
             // 
             this.openFilesToolStripMenuItem.Name = "openFilesToolStripMenuItem";
-            this.openFilesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openFilesToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.openFilesToolStripMenuItem.Text = "Open Files... ";
             this.openFilesToolStripMenuItem.Click += new System.EventHandler(this.openFilesToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -164,26 +167,6 @@
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(42, 22);
-            this.toolStripButton1.Text = "Select";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
-            // 
-            // buttonGuess
-            // 
-            this.buttonGuess.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.buttonGuess.Image = ((System.Drawing.Image)(resources.GetObject("buttonGuess.Image")));
-            this.buttonGuess.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buttonGuess.Name = "buttonGuess";
-            this.buttonGuess.Size = new System.Drawing.Size(42, 22);
-            this.buttonGuess.Text = "Guess";
-            this.buttonGuess.Click += new System.EventHandler(this.buttonGuess_Click);
-            // 
             // statusStrip1
             // 
             this.statusStrip1.Location = new System.Drawing.Point(0, 659);
@@ -198,7 +181,7 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 27.77778F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 72.22222F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 305F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 325F));
             this.tableLayoutPanel1.Controls.Add(this.listView1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tabControlSides, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 2, 0);
@@ -220,7 +203,7 @@
             this.listView1.LargeImageList = this.imageList1;
             this.listView1.Location = new System.Drawing.Point(6, 6);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(253, 598);
+            this.listView1.Size = new System.Drawing.Size(248, 598);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.listView1_ItemDrag);
@@ -244,10 +227,10 @@
             this.tabControlSides.Controls.Add(this.tabPageFlapLeft);
             this.tabControlSides.Controls.Add(this.tabPageFlapRight);
             this.tabControlSides.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControlSides.Location = new System.Drawing.Point(268, 6);
+            this.tabControlSides.Location = new System.Drawing.Point(263, 6);
             this.tabControlSides.Name = "tabControlSides";
             this.tabControlSides.SelectedIndex = 0;
-            this.tabControlSides.Size = new System.Drawing.Size(669, 598);
+            this.tabControlSides.Size = new System.Drawing.Size(654, 598);
             this.tabControlSides.TabIndex = 1;
             this.tabControlSides.SelectedIndexChanged += new System.EventHandler(this.tabControlSides_SelectedIndexChanged);
             // 
@@ -257,28 +240,10 @@
             this.tabPageFront.Location = new System.Drawing.Point(4, 22);
             this.tabPageFront.Name = "tabPageFront";
             this.tabPageFront.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageFront.Size = new System.Drawing.Size(661, 572);
+            this.tabPageFront.Size = new System.Drawing.Size(646, 572);
             this.tabPageFront.TabIndex = 0;
             this.tabPageFront.Text = "Front";
             this.tabPageFront.UseVisualStyleBackColor = true;
-            // 
-            // imageBoxFront
-            // 
-            this.imageBoxFront.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.imageBoxFront.FunctionalMode = Emgu.CV.UI.ImageBox.FunctionalModeOption.Minimum;
-            this.imageBoxFront.Location = new System.Drawing.Point(3, 3);
-            this.imageBoxFront.Margin = new System.Windows.Forms.Padding(0);
-            this.imageBoxFront.Name = "imageBoxFront";
-            this.imageBoxFront.Size = new System.Drawing.Size(655, 566);
-            this.imageBoxFront.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.imageBoxFront.TabIndex = 2;
-            this.imageBoxFront.TabStop = false;
-            this.imageBoxFront.DragDrop += new System.Windows.Forms.DragEventHandler(this.imageBoxFront_DragDrop);
-            this.imageBoxFront.DragEnter += new System.Windows.Forms.DragEventHandler(this.imageBox_DragEnter);
-            this.imageBoxFront.Paint += new System.Windows.Forms.PaintEventHandler(this.imageBox_Paint);
-            this.imageBoxFront.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseDown);
-            this.imageBoxFront.MouseMove += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseMove);
-            this.imageBoxFront.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseUp);
             // 
             // tabPageBack
             // 
@@ -286,27 +251,10 @@
             this.tabPageBack.Location = new System.Drawing.Point(4, 22);
             this.tabPageBack.Name = "tabPageBack";
             this.tabPageBack.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageBack.Size = new System.Drawing.Size(661, 572);
+            this.tabPageBack.Size = new System.Drawing.Size(649, 572);
             this.tabPageBack.TabIndex = 1;
             this.tabPageBack.Text = "Back";
             this.tabPageBack.UseVisualStyleBackColor = true;
-            // 
-            // imageBoxBack
-            // 
-            this.imageBoxBack.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.imageBoxBack.FunctionalMode = Emgu.CV.UI.ImageBox.FunctionalModeOption.Minimum;
-            this.imageBoxBack.Location = new System.Drawing.Point(3, 3);
-            this.imageBoxBack.Name = "imageBoxBack";
-            this.imageBoxBack.Size = new System.Drawing.Size(655, 566);
-            this.imageBoxBack.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.imageBoxBack.TabIndex = 2;
-            this.imageBoxBack.TabStop = false;
-            this.imageBoxBack.DragDrop += new System.Windows.Forms.DragEventHandler(this.imageBoxBack_DragDrop);
-            this.imageBoxBack.DragEnter += new System.Windows.Forms.DragEventHandler(this.imageBox_DragEnter);
-            this.imageBoxBack.Paint += new System.Windows.Forms.PaintEventHandler(this.imageBox_Paint);
-            this.imageBoxBack.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseDown);
-            this.imageBoxBack.MouseMove += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseMove);
-            this.imageBoxBack.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseUp);
             // 
             // tabPageLeft
             // 
@@ -314,162 +262,60 @@
             this.tabPageLeft.Location = new System.Drawing.Point(4, 22);
             this.tabPageLeft.Name = "tabPageLeft";
             this.tabPageLeft.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tabPageLeft.Size = new System.Drawing.Size(661, 572);
+            this.tabPageLeft.Size = new System.Drawing.Size(649, 572);
             this.tabPageLeft.TabIndex = 2;
             this.tabPageLeft.Text = "Left Side";
             this.tabPageLeft.UseVisualStyleBackColor = true;
-            // 
-            // imageBoxLeft
-            // 
-            this.imageBoxLeft.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.imageBoxLeft.FunctionalMode = Emgu.CV.UI.ImageBox.FunctionalModeOption.Minimum;
-            this.imageBoxLeft.Location = new System.Drawing.Point(0, 0);
-            this.imageBoxLeft.Name = "imageBoxLeft";
-            this.imageBoxLeft.Size = new System.Drawing.Size(661, 572);
-            this.imageBoxLeft.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.imageBoxLeft.TabIndex = 2;
-            this.imageBoxLeft.TabStop = false;
-            this.imageBoxLeft.DragDrop += new System.Windows.Forms.DragEventHandler(this.imageBoxLeft_DragDrop);
-            this.imageBoxLeft.DragEnter += new System.Windows.Forms.DragEventHandler(this.imageBox_DragEnter);
-            this.imageBoxLeft.Paint += new System.Windows.Forms.PaintEventHandler(this.imageBox_Paint);
-            this.imageBoxLeft.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseDown);
-            this.imageBoxLeft.MouseMove += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseMove);
-            this.imageBoxLeft.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseUp);
             // 
             // tabPageRight
             // 
             this.tabPageRight.Controls.Add(this.imageBoxRight);
             this.tabPageRight.Location = new System.Drawing.Point(4, 22);
             this.tabPageRight.Name = "tabPageRight";
-            this.tabPageRight.Size = new System.Drawing.Size(661, 572);
+            this.tabPageRight.Size = new System.Drawing.Size(649, 572);
             this.tabPageRight.TabIndex = 3;
             this.tabPageRight.Text = "Right Side";
             this.tabPageRight.UseVisualStyleBackColor = true;
-            // 
-            // imageBoxRight
-            // 
-            this.imageBoxRight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.imageBoxRight.FunctionalMode = Emgu.CV.UI.ImageBox.FunctionalModeOption.Minimum;
-            this.imageBoxRight.Location = new System.Drawing.Point(0, 0);
-            this.imageBoxRight.Name = "imageBoxRight";
-            this.imageBoxRight.Size = new System.Drawing.Size(661, 572);
-            this.imageBoxRight.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.imageBoxRight.TabIndex = 2;
-            this.imageBoxRight.TabStop = false;
-            this.imageBoxRight.DragDrop += new System.Windows.Forms.DragEventHandler(this.imageBoxRight_DragDrop);
-            this.imageBoxRight.DragEnter += new System.Windows.Forms.DragEventHandler(this.imageBox_DragEnter);
-            this.imageBoxRight.Paint += new System.Windows.Forms.PaintEventHandler(this.imageBox_Paint);
-            this.imageBoxRight.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseDown);
-            this.imageBoxRight.MouseMove += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseMove);
-            this.imageBoxRight.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseUp);
             // 
             // tabPageTop
             // 
             this.tabPageTop.Controls.Add(this.imageBoxTop);
             this.tabPageTop.Location = new System.Drawing.Point(4, 22);
             this.tabPageTop.Name = "tabPageTop";
-            this.tabPageTop.Size = new System.Drawing.Size(661, 572);
+            this.tabPageTop.Size = new System.Drawing.Size(649, 572);
             this.tabPageTop.TabIndex = 4;
             this.tabPageTop.Text = "Top";
             this.tabPageTop.UseVisualStyleBackColor = true;
-            // 
-            // imageBoxTop
-            // 
-            this.imageBoxTop.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.imageBoxTop.FunctionalMode = Emgu.CV.UI.ImageBox.FunctionalModeOption.Minimum;
-            this.imageBoxTop.Location = new System.Drawing.Point(0, 0);
-            this.imageBoxTop.Name = "imageBoxTop";
-            this.imageBoxTop.Size = new System.Drawing.Size(661, 572);
-            this.imageBoxTop.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.imageBoxTop.TabIndex = 2;
-            this.imageBoxTop.TabStop = false;
-            this.imageBoxTop.DragDrop += new System.Windows.Forms.DragEventHandler(this.imageBoxTop_DragDrop);
-            this.imageBoxTop.DragEnter += new System.Windows.Forms.DragEventHandler(this.imageBox_DragEnter);
-            this.imageBoxTop.Paint += new System.Windows.Forms.PaintEventHandler(this.imageBox_Paint);
-            this.imageBoxTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseDown);
-            this.imageBoxTop.MouseMove += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseMove);
-            this.imageBoxTop.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseUp);
             // 
             // tabPageBottom
             // 
             this.tabPageBottom.Controls.Add(this.imageBoxBottom);
             this.tabPageBottom.Location = new System.Drawing.Point(4, 22);
             this.tabPageBottom.Name = "tabPageBottom";
-            this.tabPageBottom.Size = new System.Drawing.Size(661, 572);
+            this.tabPageBottom.Size = new System.Drawing.Size(649, 572);
             this.tabPageBottom.TabIndex = 5;
             this.tabPageBottom.Text = "Bottom";
             this.tabPageBottom.UseVisualStyleBackColor = true;
-            // 
-            // imageBoxBottom
-            // 
-            this.imageBoxBottom.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.imageBoxBottom.FunctionalMode = Emgu.CV.UI.ImageBox.FunctionalModeOption.Minimum;
-            this.imageBoxBottom.Location = new System.Drawing.Point(0, 0);
-            this.imageBoxBottom.Name = "imageBoxBottom";
-            this.imageBoxBottom.Size = new System.Drawing.Size(661, 572);
-            this.imageBoxBottom.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.imageBoxBottom.TabIndex = 2;
-            this.imageBoxBottom.TabStop = false;
-            this.imageBoxBottom.DragDrop += new System.Windows.Forms.DragEventHandler(this.imageBoxBottom_DragDrop);
-            this.imageBoxBottom.DragEnter += new System.Windows.Forms.DragEventHandler(this.imageBox_DragEnter);
-            this.imageBoxBottom.Paint += new System.Windows.Forms.PaintEventHandler(this.imageBox_Paint);
-            this.imageBoxBottom.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseDown);
-            this.imageBoxBottom.MouseMove += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseMove);
-            this.imageBoxBottom.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseUp);
             // 
             // tabPageFlapLeft
             // 
             this.tabPageFlapLeft.Controls.Add(this.imageBoxFlapLeft);
             this.tabPageFlapLeft.Location = new System.Drawing.Point(4, 22);
             this.tabPageFlapLeft.Name = "tabPageFlapLeft";
-            this.tabPageFlapLeft.Size = new System.Drawing.Size(661, 572);
+            this.tabPageFlapLeft.Size = new System.Drawing.Size(649, 572);
             this.tabPageFlapLeft.TabIndex = 6;
             this.tabPageFlapLeft.Text = "Left Flap";
             this.tabPageFlapLeft.UseVisualStyleBackColor = true;
-            // 
-            // imageBoxFlapLeft
-            // 
-            this.imageBoxFlapLeft.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.imageBoxFlapLeft.FunctionalMode = Emgu.CV.UI.ImageBox.FunctionalModeOption.Minimum;
-            this.imageBoxFlapLeft.Location = new System.Drawing.Point(0, 0);
-            this.imageBoxFlapLeft.Name = "imageBoxFlapLeft";
-            this.imageBoxFlapLeft.Size = new System.Drawing.Size(661, 572);
-            this.imageBoxFlapLeft.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.imageBoxFlapLeft.TabIndex = 2;
-            this.imageBoxFlapLeft.TabStop = false;
-            this.imageBoxFlapLeft.DragDrop += new System.Windows.Forms.DragEventHandler(this.imageBoxFlapLeft_DragDrop);
-            this.imageBoxFlapLeft.DragEnter += new System.Windows.Forms.DragEventHandler(this.imageBox_DragEnter);
-            this.imageBoxFlapLeft.Paint += new System.Windows.Forms.PaintEventHandler(this.imageBox_Paint);
-            this.imageBoxFlapLeft.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseDown);
-            this.imageBoxFlapLeft.MouseMove += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseMove);
-            this.imageBoxFlapLeft.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseUp);
             // 
             // tabPageFlapRight
             // 
             this.tabPageFlapRight.Controls.Add(this.imageBoxFlapRight);
             this.tabPageFlapRight.Location = new System.Drawing.Point(4, 22);
             this.tabPageFlapRight.Name = "tabPageFlapRight";
-            this.tabPageFlapRight.Size = new System.Drawing.Size(661, 572);
+            this.tabPageFlapRight.Size = new System.Drawing.Size(649, 572);
             this.tabPageFlapRight.TabIndex = 7;
             this.tabPageFlapRight.Text = "Right Flap";
             this.tabPageFlapRight.UseVisualStyleBackColor = true;
-            // 
-            // imageBoxFlapRight
-            // 
-            this.imageBoxFlapRight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.imageBoxFlapRight.FunctionalMode = Emgu.CV.UI.ImageBox.FunctionalModeOption.Minimum;
-            this.imageBoxFlapRight.Location = new System.Drawing.Point(0, 0);
-            this.imageBoxFlapRight.Name = "imageBoxFlapRight";
-            this.imageBoxFlapRight.Size = new System.Drawing.Size(661, 572);
-            this.imageBoxFlapRight.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.imageBoxFlapRight.TabIndex = 2;
-            this.imageBoxFlapRight.TabStop = false;
-            this.imageBoxFlapRight.DragDrop += new System.Windows.Forms.DragEventHandler(this.imageBoxFlapRight_DragDrop);
-            this.imageBoxFlapRight.DragEnter += new System.Windows.Forms.DragEventHandler(this.imageBox_DragEnter);
-            this.imageBoxFlapRight.Paint += new System.Windows.Forms.PaintEventHandler(this.imageBox_Paint);
-            this.imageBoxFlapRight.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseDown);
-            this.imageBoxFlapRight.MouseMove += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseMove);
-            this.imageBoxFlapRight.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseUp);
             // 
             // tableLayoutPanel2
             // 
@@ -480,14 +326,226 @@
             this.tableLayoutPanel2.Controls.Add(this.MappedPreview, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.panel1, 0, 2);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(946, 6);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(926, 6);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 3;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 190F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(300, 598);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(320, 598);
             this.tableLayoutPanel2.TabIndex = 2;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.btnMirrorVertical);
+            this.panel1.Controls.Add(this.btnMirrorHorizontal);
+            this.panel1.Controls.Add(this.btnRotateCCW);
+            this.panel1.Controls.Add(this.btnRotateCW);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(3, 411);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(314, 184);
+            this.panel1.TabIndex = 3;
+            // 
+            // exportTexturesToolStripMenuItem
+            // 
+            this.exportTexturesToolStripMenuItem.Name = "exportTexturesToolStripMenuItem";
+            this.exportTexturesToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.exportTexturesToolStripMenuItem.Text = "Export Textures...";
+            this.exportTexturesToolStripMenuItem.Click += new System.EventHandler(this.exportTexturesToolStripMenuItem_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackgroundImage = global::_3Dekeystoner.Properties.Resources.IconRotate180;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button1.Location = new System.Drawing.Point(85, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(35, 35);
+            this.button1.TabIndex = 8;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnMirrorVertical
+            // 
+            this.btnMirrorVertical.BackgroundImage = global::_3Dekeystoner.Properties.Resources.IconMirrorVer;
+            this.btnMirrorVertical.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnMirrorVertical.Location = new System.Drawing.Point(44, 44);
+            this.btnMirrorVertical.Name = "btnMirrorVertical";
+            this.btnMirrorVertical.Size = new System.Drawing.Size(35, 35);
+            this.btnMirrorVertical.TabIndex = 7;
+            this.btnMirrorVertical.UseVisualStyleBackColor = true;
+            this.btnMirrorVertical.Click += new System.EventHandler(this.btnMirrorVertical_Click);
+            // 
+            // btnMirrorHorizontal
+            // 
+            this.btnMirrorHorizontal.BackgroundImage = global::_3Dekeystoner.Properties.Resources.IconMirrorHor;
+            this.btnMirrorHorizontal.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnMirrorHorizontal.Location = new System.Drawing.Point(3, 44);
+            this.btnMirrorHorizontal.Name = "btnMirrorHorizontal";
+            this.btnMirrorHorizontal.Size = new System.Drawing.Size(35, 35);
+            this.btnMirrorHorizontal.TabIndex = 6;
+            this.btnMirrorHorizontal.UseVisualStyleBackColor = true;
+            this.btnMirrorHorizontal.Click += new System.EventHandler(this.btnMirrorHorizontal_Click);
+            // 
+            // btnRotateCCW
+            // 
+            this.btnRotateCCW.BackgroundImage = global::_3Dekeystoner.Properties.Resources.IconRotateCCW;
+            this.btnRotateCCW.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRotateCCW.Location = new System.Drawing.Point(44, 3);
+            this.btnRotateCCW.Name = "btnRotateCCW";
+            this.btnRotateCCW.Size = new System.Drawing.Size(35, 35);
+            this.btnRotateCCW.TabIndex = 5;
+            this.btnRotateCCW.UseVisualStyleBackColor = true;
+            this.btnRotateCCW.Click += new System.EventHandler(this.btnRotateCCW_Click);
+            // 
+            // btnRotateCW
+            // 
+            this.btnRotateCW.BackgroundImage = global::_3Dekeystoner.Properties.Resources.IconRotateCW;
+            this.btnRotateCW.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRotateCW.Location = new System.Drawing.Point(3, 3);
+            this.btnRotateCW.Name = "btnRotateCW";
+            this.btnRotateCW.Size = new System.Drawing.Size(35, 35);
+            this.btnRotateCW.TabIndex = 4;
+            this.btnRotateCW.UseVisualStyleBackColor = true;
+            this.btnRotateCW.Click += new System.EventHandler(this.btnRotateCW_Click);
+            // 
+            // imageBoxFront
+            // 
+            this.imageBoxFront.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageBoxFront.FunctionalMode = Emgu.CV.UI.ImageBox.FunctionalModeOption.Minimum;
+            this.imageBoxFront.Location = new System.Drawing.Point(3, 3);
+            this.imageBoxFront.Margin = new System.Windows.Forms.Padding(0);
+            this.imageBoxFront.Name = "imageBoxFront";
+            this.imageBoxFront.Size = new System.Drawing.Size(640, 566);
+            this.imageBoxFront.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.imageBoxFront.TabIndex = 2;
+            this.imageBoxFront.TabStop = false;
+            this.imageBoxFront.DragDrop += new System.Windows.Forms.DragEventHandler(this.imageBoxFront_DragDrop);
+            this.imageBoxFront.DragEnter += new System.Windows.Forms.DragEventHandler(this.imageBox_DragEnter);
+            this.imageBoxFront.Paint += new System.Windows.Forms.PaintEventHandler(this.imageBox_Paint);
+            this.imageBoxFront.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseDown);
+            this.imageBoxFront.MouseMove += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseMove);
+            this.imageBoxFront.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseUp);
+            // 
+            // imageBoxBack
+            // 
+            this.imageBoxBack.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageBoxBack.FunctionalMode = Emgu.CV.UI.ImageBox.FunctionalModeOption.Minimum;
+            this.imageBoxBack.Location = new System.Drawing.Point(3, 3);
+            this.imageBoxBack.Name = "imageBoxBack";
+            this.imageBoxBack.Size = new System.Drawing.Size(643, 566);
+            this.imageBoxBack.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.imageBoxBack.TabIndex = 2;
+            this.imageBoxBack.TabStop = false;
+            this.imageBoxBack.DragDrop += new System.Windows.Forms.DragEventHandler(this.imageBoxBack_DragDrop);
+            this.imageBoxBack.DragEnter += new System.Windows.Forms.DragEventHandler(this.imageBox_DragEnter);
+            this.imageBoxBack.Paint += new System.Windows.Forms.PaintEventHandler(this.imageBox_Paint);
+            this.imageBoxBack.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseDown);
+            this.imageBoxBack.MouseMove += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseMove);
+            this.imageBoxBack.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseUp);
+            // 
+            // imageBoxLeft
+            // 
+            this.imageBoxLeft.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageBoxLeft.FunctionalMode = Emgu.CV.UI.ImageBox.FunctionalModeOption.Minimum;
+            this.imageBoxLeft.Location = new System.Drawing.Point(0, 0);
+            this.imageBoxLeft.Name = "imageBoxLeft";
+            this.imageBoxLeft.Size = new System.Drawing.Size(649, 572);
+            this.imageBoxLeft.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.imageBoxLeft.TabIndex = 2;
+            this.imageBoxLeft.TabStop = false;
+            this.imageBoxLeft.DragDrop += new System.Windows.Forms.DragEventHandler(this.imageBoxLeft_DragDrop);
+            this.imageBoxLeft.DragEnter += new System.Windows.Forms.DragEventHandler(this.imageBox_DragEnter);
+            this.imageBoxLeft.Paint += new System.Windows.Forms.PaintEventHandler(this.imageBox_Paint);
+            this.imageBoxLeft.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseDown);
+            this.imageBoxLeft.MouseMove += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseMove);
+            this.imageBoxLeft.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseUp);
+            // 
+            // imageBoxRight
+            // 
+            this.imageBoxRight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageBoxRight.FunctionalMode = Emgu.CV.UI.ImageBox.FunctionalModeOption.Minimum;
+            this.imageBoxRight.Location = new System.Drawing.Point(0, 0);
+            this.imageBoxRight.Name = "imageBoxRight";
+            this.imageBoxRight.Size = new System.Drawing.Size(649, 572);
+            this.imageBoxRight.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.imageBoxRight.TabIndex = 2;
+            this.imageBoxRight.TabStop = false;
+            this.imageBoxRight.DragDrop += new System.Windows.Forms.DragEventHandler(this.imageBoxRight_DragDrop);
+            this.imageBoxRight.DragEnter += new System.Windows.Forms.DragEventHandler(this.imageBox_DragEnter);
+            this.imageBoxRight.Paint += new System.Windows.Forms.PaintEventHandler(this.imageBox_Paint);
+            this.imageBoxRight.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseDown);
+            this.imageBoxRight.MouseMove += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseMove);
+            this.imageBoxRight.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseUp);
+            // 
+            // imageBoxTop
+            // 
+            this.imageBoxTop.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageBoxTop.FunctionalMode = Emgu.CV.UI.ImageBox.FunctionalModeOption.Minimum;
+            this.imageBoxTop.Location = new System.Drawing.Point(0, 0);
+            this.imageBoxTop.Name = "imageBoxTop";
+            this.imageBoxTop.Size = new System.Drawing.Size(649, 572);
+            this.imageBoxTop.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.imageBoxTop.TabIndex = 2;
+            this.imageBoxTop.TabStop = false;
+            this.imageBoxTop.DragDrop += new System.Windows.Forms.DragEventHandler(this.imageBoxTop_DragDrop);
+            this.imageBoxTop.DragEnter += new System.Windows.Forms.DragEventHandler(this.imageBox_DragEnter);
+            this.imageBoxTop.Paint += new System.Windows.Forms.PaintEventHandler(this.imageBox_Paint);
+            this.imageBoxTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseDown);
+            this.imageBoxTop.MouseMove += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseMove);
+            this.imageBoxTop.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseUp);
+            // 
+            // imageBoxBottom
+            // 
+            this.imageBoxBottom.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageBoxBottom.FunctionalMode = Emgu.CV.UI.ImageBox.FunctionalModeOption.Minimum;
+            this.imageBoxBottom.Location = new System.Drawing.Point(0, 0);
+            this.imageBoxBottom.Name = "imageBoxBottom";
+            this.imageBoxBottom.Size = new System.Drawing.Size(649, 572);
+            this.imageBoxBottom.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.imageBoxBottom.TabIndex = 2;
+            this.imageBoxBottom.TabStop = false;
+            this.imageBoxBottom.DragDrop += new System.Windows.Forms.DragEventHandler(this.imageBoxBottom_DragDrop);
+            this.imageBoxBottom.DragEnter += new System.Windows.Forms.DragEventHandler(this.imageBox_DragEnter);
+            this.imageBoxBottom.Paint += new System.Windows.Forms.PaintEventHandler(this.imageBox_Paint);
+            this.imageBoxBottom.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseDown);
+            this.imageBoxBottom.MouseMove += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseMove);
+            this.imageBoxBottom.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseUp);
+            // 
+            // imageBoxFlapLeft
+            // 
+            this.imageBoxFlapLeft.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageBoxFlapLeft.FunctionalMode = Emgu.CV.UI.ImageBox.FunctionalModeOption.Minimum;
+            this.imageBoxFlapLeft.Location = new System.Drawing.Point(0, 0);
+            this.imageBoxFlapLeft.Name = "imageBoxFlapLeft";
+            this.imageBoxFlapLeft.Size = new System.Drawing.Size(649, 572);
+            this.imageBoxFlapLeft.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.imageBoxFlapLeft.TabIndex = 2;
+            this.imageBoxFlapLeft.TabStop = false;
+            this.imageBoxFlapLeft.DragDrop += new System.Windows.Forms.DragEventHandler(this.imageBoxFlapLeft_DragDrop);
+            this.imageBoxFlapLeft.DragEnter += new System.Windows.Forms.DragEventHandler(this.imageBox_DragEnter);
+            this.imageBoxFlapLeft.Paint += new System.Windows.Forms.PaintEventHandler(this.imageBox_Paint);
+            this.imageBoxFlapLeft.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseDown);
+            this.imageBoxFlapLeft.MouseMove += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseMove);
+            this.imageBoxFlapLeft.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseUp);
+            // 
+            // imageBoxFlapRight
+            // 
+            this.imageBoxFlapRight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageBoxFlapRight.FunctionalMode = Emgu.CV.UI.ImageBox.FunctionalModeOption.Minimum;
+            this.imageBoxFlapRight.Location = new System.Drawing.Point(0, 0);
+            this.imageBoxFlapRight.Name = "imageBoxFlapRight";
+            this.imageBoxFlapRight.Size = new System.Drawing.Size(649, 572);
+            this.imageBoxFlapRight.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.imageBoxFlapRight.TabIndex = 2;
+            this.imageBoxFlapRight.TabStop = false;
+            this.imageBoxFlapRight.DragDrop += new System.Windows.Forms.DragEventHandler(this.imageBoxFlapRight_DragDrop);
+            this.imageBoxFlapRight.DragEnter += new System.Windows.Forms.DragEventHandler(this.imageBox_DragEnter);
+            this.imageBoxFlapRight.Paint += new System.Windows.Forms.PaintEventHandler(this.imageBox_Paint);
+            this.imageBoxFlapRight.MouseDown += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseDown);
+            this.imageBoxFlapRight.MouseMove += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseMove);
+            this.imageBoxFlapRight.MouseUp += new System.Windows.Forms.MouseEventHandler(this.imageBox_MouseUp);
             // 
             // PreviewImage
             // 
@@ -496,7 +554,7 @@
             this.PreviewImage.FunctionalMode = Emgu.CV.UI.ImageBox.FunctionalModeOption.Minimum;
             this.PreviewImage.Location = new System.Drawing.Point(3, 3);
             this.PreviewImage.Name = "PreviewImage";
-            this.PreviewImage.Size = new System.Drawing.Size(294, 198);
+            this.PreviewImage.Size = new System.Drawing.Size(314, 198);
             this.PreviewImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.PreviewImage.TabIndex = 2;
             this.PreviewImage.TabStop = false;
@@ -509,50 +567,31 @@
             this.MappedPreview.FunctionalMode = Emgu.CV.UI.ImageBox.FunctionalModeOption.Minimum;
             this.MappedPreview.Location = new System.Drawing.Point(3, 207);
             this.MappedPreview.Name = "MappedPreview";
-            this.MappedPreview.Size = new System.Drawing.Size(294, 198);
+            this.MappedPreview.Size = new System.Drawing.Size(314, 198);
             this.MappedPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.MappedPreview.TabIndex = 2;
             this.MappedPreview.TabStop = false;
             this.MappedPreview.Paint += new System.Windows.Forms.PaintEventHandler(this.MappedPreview_Paint);
             // 
-            // panel1
+            // toolStripButton1
             // 
-            this.panel1.Controls.Add(this.btnRotateCCW);
-            this.panel1.Controls.Add(this.btnRotateCW);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 411);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(294, 184);
-            this.panel1.TabIndex = 3;
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(42, 22);
+            this.toolStripButton1.Text = "Select";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
-            // btnRotateCCW
+            // buttonGuess
             // 
-            this.btnRotateCCW.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRotateCCW.BackgroundImage")));
-            this.btnRotateCCW.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnRotateCCW.Location = new System.Drawing.Point(44, 3);
-            this.btnRotateCCW.Name = "btnRotateCCW";
-            this.btnRotateCCW.Size = new System.Drawing.Size(35, 35);
-            this.btnRotateCCW.TabIndex = 5;
-            this.btnRotateCCW.UseVisualStyleBackColor = true;
-            this.btnRotateCCW.Click += new System.EventHandler(this.btnRotateCCW_Click);
-            // 
-            // btnRotateCW
-            // 
-            this.btnRotateCW.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRotateCW.BackgroundImage")));
-            this.btnRotateCW.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnRotateCW.Location = new System.Drawing.Point(3, 3);
-            this.btnRotateCW.Name = "btnRotateCW";
-            this.btnRotateCW.Size = new System.Drawing.Size(35, 35);
-            this.btnRotateCW.TabIndex = 4;
-            this.btnRotateCW.UseVisualStyleBackColor = true;
-            this.btnRotateCW.Click += new System.EventHandler(this.btnRotateCW_Click);
-            // 
-            // exportTexturesToolStripMenuItem
-            // 
-            this.exportTexturesToolStripMenuItem.Name = "exportTexturesToolStripMenuItem";
-            this.exportTexturesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.exportTexturesToolStripMenuItem.Text = "Export Textures...";
-            this.exportTexturesToolStripMenuItem.Click += new System.EventHandler(this.exportTexturesToolStripMenuItem_Click);
+            this.buttonGuess.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.buttonGuess.Image = ((System.Drawing.Image)(resources.GetObject("buttonGuess.Image")));
+            this.buttonGuess.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buttonGuess.Name = "buttonGuess";
+            this.buttonGuess.Size = new System.Drawing.Size(42, 22);
+            this.buttonGuess.Text = "Guess";
+            this.buttonGuess.Click += new System.EventHandler(this.buttonGuess_Click);
             // 
             // MainBoxTextureEditForm
             // 
@@ -574,25 +613,25 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tabControlSides.ResumeLayout(false);
             this.tabPageFront.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.imageBoxFront)).EndInit();
             this.tabPageBack.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.imageBoxBack)).EndInit();
             this.tabPageLeft.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.imageBoxLeft)).EndInit();
             this.tabPageRight.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.imageBoxRight)).EndInit();
             this.tabPageTop.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.imageBoxTop)).EndInit();
             this.tabPageBottom.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.imageBoxBottom)).EndInit();
             this.tabPageFlapLeft.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.imageBoxFlapLeft)).EndInit();
             this.tabPageFlapRight.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.imageBoxFlapRight)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.imageBoxFront)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageBoxBack)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageBoxLeft)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageBoxRight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageBoxTop)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageBoxBottom)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageBoxFlapLeft)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageBoxFlapRight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PreviewImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MappedPreview)).EndInit();
-            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -638,5 +677,8 @@
         private System.Windows.Forms.Button btnRotateCCW;
         private System.Windows.Forms.Button btnRotateCW;
         private System.Windows.Forms.ToolStripMenuItem exportTexturesToolStripMenuItem;
+        private System.Windows.Forms.Button btnMirrorVertical;
+        private System.Windows.Forms.Button btnMirrorHorizontal;
+        private System.Windows.Forms.Button button1;
     }
 }

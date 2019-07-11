@@ -75,11 +75,18 @@ namespace _3Dekeystoner
         }
 
         private void buttonGuess_Click(object sender, EventArgs e)
-        {            
-            PreviewImage.Image = uvEditData[tabControlSides.SelectedIndex].handel_GuessButtonClick();
-            PreviewImage.Invalidate();
-            tabControlSides.Invalidate();
-            MappedPreview.Invalidate();
+        {
+            if (!uvEditData[tabControlSides.SelectedIndex].rawPhoto.Size.IsEmpty)
+            {
+                PreviewImage.Image = uvEditData[tabControlSides.SelectedIndex].handel_GuessButtonClick();
+                PreviewImage.Invalidate();
+                tabControlSides.Invalidate();
+                MappedPreview.Invalidate();
+            }
+            else
+            {
+                MessageBox.Show("You need to select an image to put on this tab before guessing.");
+            }
         }
 
 
@@ -257,32 +264,36 @@ namespace _3Dekeystoner
                     }
                     break;
             }
-            if (uvEditData[tabControlSides.SelectedIndex].finalImage!=null)
-            {
-                PreviewImage.Image = uvEditData[tabControlSides.SelectedIndex].finalImage;
-                PreviewImage.Invalidate();
-                MappedPreview.Invalidate();
-            }
+
+            if (uvEditData[tabControlSides.SelectedIndex].finalImage.Bitmap != null)
+                if (!uvEditData[tabControlSides.SelectedIndex].finalImage.Bitmap.Size.IsEmpty)
+                {
+                    PreviewImage.Image = uvEditData[tabControlSides.SelectedIndex].finalImage;
+                    PreviewImage.Invalidate();
+                    MappedPreview.Invalidate();
+                }
         }
 
         private void btnRotateCW_Click(object sender, EventArgs e)
         {
-            if(uvEditData[tabControlSides.SelectedIndex].finalImage!=null)
-            {
-                uvEditData[tabControlSides.SelectedIndex].handle_RotateCW();
-                PreviewImage.Invalidate();
-                MappedPreview.Invalidate();
-            }
+            if (uvEditData[tabControlSides.SelectedIndex].finalImage.Bitmap != null)
+                if (!uvEditData[tabControlSides.SelectedIndex].finalImage.Bitmap.Size.IsEmpty)
+                {
+                    uvEditData[tabControlSides.SelectedIndex].handle_RotateCW();
+                    PreviewImage.Invalidate();
+                    MappedPreview.Invalidate();
+                }
         }
 
         private void btnRotateCCW_Click(object sender, EventArgs e)
         {
-            if (uvEditData[tabControlSides.SelectedIndex].finalImage != null)
-            {
-                uvEditData[tabControlSides.SelectedIndex].handle_RotateCCW();
-                PreviewImage.Invalidate();
-                MappedPreview.Invalidate();
-            }
+            if (uvEditData[tabControlSides.SelectedIndex].finalImage.Bitmap != null)
+                if (!uvEditData[tabControlSides.SelectedIndex].finalImage.Bitmap.Size.IsEmpty)
+                {
+                    uvEditData[tabControlSides.SelectedIndex].handle_RotateCCW();
+                    PreviewImage.Invalidate();
+                    MappedPreview.Invalidate();
+                }
         }
 
         private void exportTexturesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -293,16 +304,49 @@ namespace _3Dekeystoner
 
         private void MappedPreview_Paint(object sender, PaintEventArgs e)
         {
-            if (uvEditData[tabControlSides.SelectedIndex].finalImage.Bitmap != null)
-            {
-                Graphics g = e.Graphics;
-                Pen pen = new Pen(Color.Red);
-                float wScale = (float)((float)MappedPreview.Width / 600.0);
-                float hScale = (float)((float)MappedPreview.Height / 400.0);
-                float zoomScale = (float)((float)MappedPreview.Height / 198.0);//198 i MappedPreview.Height at the program start
-                g.DrawImage(uvEditData[tabControlSides.SelectedIndex].DistortToMappedPreview(wScale, hScale), 0, (MappedPreview.Height-MappedPreview.Height/zoomScale)/2, MappedPreview.Width, MappedPreview.Height/zoomScale);
-            }
+            if(uvEditData[tabControlSides.SelectedIndex].finalImage.Bitmap!= null)
+                if (!uvEditData[tabControlSides.SelectedIndex].finalImage.Bitmap.Size.IsEmpty)
+                {
+                    Graphics g = e.Graphics;
+                    Pen pen = new Pen(Color.Red);
+                    float wScale = (float)((float)MappedPreview.Width / 600.0);
+                    float hScale = (float)((float)MappedPreview.Height / 400.0);
+                    float zoomScale = (float)((float)MappedPreview.Height / 198.0);//198 is MappedPreview.Height at the program start
+                    g.DrawImage(uvEditData[tabControlSides.SelectedIndex].DistortToMappedPreview(wScale, hScale), 0, (MappedPreview.Height-MappedPreview.Height/zoomScale)/2, MappedPreview.Width, MappedPreview.Height/zoomScale);
+                }
+        }
 
+        private void btnMirrorHorizontal_Click(object sender, EventArgs e)
+        {
+            if (uvEditData[tabControlSides.SelectedIndex].finalImage.Bitmap != null)
+                if (!uvEditData[tabControlSides.SelectedIndex].finalImage.Bitmap.Size.IsEmpty)
+                {
+                    uvEditData[tabControlSides.SelectedIndex].handle_MirrorHorizontal();
+                    PreviewImage.Invalidate();
+                    MappedPreview.Invalidate();
+                }
+        }
+
+        private void btnMirrorVertical_Click(object sender, EventArgs e)
+        {
+            if (uvEditData[tabControlSides.SelectedIndex].finalImage.Bitmap != null)
+                if (!uvEditData[tabControlSides.SelectedIndex].finalImage.Bitmap.Size.IsEmpty)
+                {
+                    uvEditData[tabControlSides.SelectedIndex].handle_MirrorVertical();
+                    PreviewImage.Invalidate();
+                    MappedPreview.Invalidate();
+                }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (uvEditData[tabControlSides.SelectedIndex].finalImage.Bitmap != null)
+                if (!uvEditData[tabControlSides.SelectedIndex].finalImage.Bitmap.Size.IsEmpty)
+                {
+                    uvEditData[tabControlSides.SelectedIndex].handel_Rotate180();
+                    PreviewImage.Invalidate();
+                    MappedPreview.Invalidate();
+                }
         }
     }
 }

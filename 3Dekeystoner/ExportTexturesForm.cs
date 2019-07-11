@@ -29,7 +29,7 @@ namespace _3Dekeystoner
         public ExportTexturesForm()
         {
             InitializeComponent();
-            exportPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)+"\\3DProjects\\Testing";
+            exportPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             labelPath.Text = exportPath;
             if (Program.mForm.uvEditData[0].finalImage != null)
             {
@@ -73,6 +73,15 @@ namespace _3Dekeystoner
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if(Directory.Exists( labelPath.Text))
+            {
+                fbdExportLocation.SelectedPath = labelPath.Text;
+            }
+            else
+            {
+                fbdExportLocation.SelectedPath= Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            }
+
             if(fbdExportLocation.ShowDialog()==DialogResult.OK)
             {
                 exportPath = fbdExportLocation.SelectedPath;
@@ -83,22 +92,41 @@ namespace _3Dekeystoner
 
         private void btnExport_Click(object sender, EventArgs e)
         {
-            if (Directory.Exists(exportPath))
+            try
             {
-                if (FrontFile != null) FrontFile.Save(exportPath + "\\Box_Front.jpg");
-                if (BackFile != null) BackFile.Save(exportPath + "\\Box_Back.jpg");
-                if (SidesFile != null) SidesFile.Save(exportPath + "\\Box_Sides.jpg");
-                if (FlapLeftFile != null) FlapLeftFile.Save(exportPath + "\\Box_Flap_Left.jpg");
-                if (FlapRightFile != null) FlapRightFile.Save(exportPath + "\\Box_Flap_Right.jpg");
+                if (Directory.Exists(exportPath))
+                {
+                    if (!FrontFile.IsEmpty) FrontFile.Save(exportPath + "\\Box_Front.jpg");
+                    if (!BackFile.Size.IsEmpty) BackFile.Save(exportPath + "\\Box_Back.jpg");
+                    if (!SidesFile.IsEmpty) SidesFile.Save(exportPath + "\\Box_Sides.jpg");
+                    if (!FlapLeftFile.IsEmpty) FlapLeftFile.Save(exportPath + "\\Box_Flap_Left.jpg");
+                    if (!FlapRightFile.IsEmpty) FlapRightFile.Save(exportPath + "\\Box_Flap_Right.jpg");
+                    byte[] resName = Properties.Resources.Small_Flap_Box;
+                    FileStream fileStream = new FileStream(exportPath + "\\small_Flap_Box.blend", FileMode.Create);
+                    for (int i = 0; i < resName.Length; i++)
+                        fileStream.WriteByte(resName[i]);
+                    fileStream.Close();
+                }
+                else
+                {
+                    button1_Click(sender, e);
+                    if (!FrontFile.IsEmpty) FrontFile.Save(exportPath + "\\Box_Front.jpg");
+                    if (!BackFile.Size.IsEmpty) BackFile.Save(exportPath + "\\Box_Back.jpg");
+                    if (!SidesFile.IsEmpty) SidesFile.Save(exportPath + "\\Box_Sides.jpg");
+                    if (!FlapLeftFile.IsEmpty) FlapLeftFile.Save(exportPath + "\\Box_Flap_Left.jpg");
+                    if (!FlapRightFile.IsEmpty) FlapRightFile.Save(exportPath + "\\Box_Flap_Right.jpg");
+                    byte[] resName = Properties.Resources.Small_Flap_Box;
+                    FileStream fileStream = new FileStream(exportPath + "\\small_Flap_Box.blend", FileMode.Create);
+                    for (int i = 0; i < resName.Length; i++)
+                        fileStream.WriteByte(resName[i]);
+                    fileStream.Close();
+                }
+                MessageBox.Show("Export Complete");
+                this.Close();
             }
-            else
+            catch (Exception ex)
             {
-                button1_Click(sender, e);
-                if (FrontFile != null) FrontFile.Save(exportPath + "\\Box_Front.jpg");
-                if (BackFile != null) BackFile.Save(exportPath + "\\Box_Back.jpg");
-                if (SidesFile != null) SidesFile.Save(exportPath + "\\Box_Sides.jpg");
-                if (FlapLeftFile != null) FlapLeftFile.Save(exportPath + "\\Box_Flap_Left.jpg");
-                if (FlapRightFile != null) FlapRightFile.Save(exportPath + "\\Box_Flap_Right.jpg");
+                MessageBox.Show(ex.GetBaseException().ToString());
             }
         }
     }

@@ -28,21 +28,34 @@ namespace _3Dekeystoner
         public bool dragging;              //Is the mouse currently dragging on the tab
         public bool drawing;               //Is the tab currently computing what to draw/activly drawing
         public string fileName;            //Location of the undeited photo in the file system
-        public BoxTextureFile btf;
+        public BoxTextureFile btf;         //Enum defined above. Keeps track of which 3d preview background image to show
+        public double scaleX;              //keeps track of the difference between the width of the image file and the screen size
+        public double scaleY;              //keeps track of the difference between the height of the image file and the screen size
+        public double transX;              //keeps track of the screen offset on the x axis
+        public double transY;              //keeps track of the screen offset on the y axis
+
 
 
         public UVEditTabPageData(int tabIndex)
         {
             finalImage = new Mat();
             rawPhoto = new Mat();
+            //Arbitrary starting point for the uv mapping corners
             uvCorners = new Point[] {new Point(50, 50),
                                         new Point(50, 350),
                                         new Point(350, 350),
                                         new Point(350, 50),};
+
             activePoint = -1;
             currentPoint = new Point(0, 0);
             drawing = false;
             dragging = false;
+
+            scaleX = 1;
+            scaleY = 1;
+            transX = 0;
+            transY = 0;
+
             switch(tabIndex)
             {
                 case 0:
@@ -52,6 +65,7 @@ namespace _3Dekeystoner
                         outputX = 0;
                         outputY = 0;
                         btf = BoxTextureFile.BOXFRONT;
+                        //Magic numbers I got from photoshop coordinates on the background images
                         mappedCorners = new PointF[] { new PointF(224,87),new PointF(419,35),new PointF(244,334),new PointF(395, 267) };
                     }
                     break;
@@ -62,6 +76,7 @@ namespace _3Dekeystoner
                         outputX = 0;
                         outputY = 0;
                         btf = BoxTextureFile.BOXBACK;
+                        //Magic numbers I got from photoshop coordinates on the background images
                         mappedCorners = new PointF[] { new PointF(180, 27), new PointF(360, 66), new PointF(200, 289), new PointF(345, 364) };
                     }
                     break;
@@ -72,6 +87,7 @@ namespace _3Dekeystoner
                         outputX = 512;
                         outputY = 0;
                         btf = BoxTextureFile.BOXSIDES;
+                        //Magic numbers I got from photoshop coordinates on the background images
                         mappedCorners = new PointF[] { new PointF(360, 66), new PointF(403, 54), new PointF(345, 367), new PointF(385, 342) };
                     }
                     break;
@@ -82,6 +98,7 @@ namespace _3Dekeystoner
                         outputX = 1536;
                         outputY = 0;
                         btf = BoxTextureFile.BOXSIDES;
+                        //Magic numbers I got from photoshop coordinates on the background images
                         mappedCorners = new PointF[] { new PointF(360, 73), new PointF(399, 63), new PointF(348, 334), new PointF(382, 316) };
                     }
                     break;
@@ -92,7 +109,7 @@ namespace _3Dekeystoner
                         outputX = 0;
                         outputY = 0;
                         btf = BoxTextureFile.BOXSIDES;
-                        //mappedCorners = new PointF[] { new PointF(144, 64), new PointF(493, 68) ,new PointF(136, 139), new PointF(500, 144) };
+                        //Magic numbers I got from photoshop coordinates on the background images
                         mappedCorners = new PointF[] { new PointF(136, 139), new PointF(144, 64), new PointF(500, 144), new PointF(493, 68) };
                     }
                     break;
@@ -103,6 +120,7 @@ namespace _3Dekeystoner
                         outputX = 1024;
                         outputY = 0;
                         btf = BoxTextureFile.BOXSIDES;
+                        //Magic numbers I got from photoshop coordinates on the background images
                         mappedCorners = new PointF[] { new PointF(145, 320), new PointF(140, 248), new PointF(489, 325), new PointF(500, 255) };
                     }
                     break;
@@ -113,6 +131,7 @@ namespace _3Dekeystoner
                         outputX = 0;
                         outputY = 0;
                         btf = BoxTextureFile.BOXFLAPLEFT;
+                        //Magic numbers I got from photoshop coordinates on the background images
                         mappedCorners = new PointF[] { new PointF(130, 59), new PointF(311, 58), new PointF(146, 334), new PointF(311, 303) };
                     }
                     break;
@@ -123,33 +142,79 @@ namespace _3Dekeystoner
                         outputX = 0;
                         outputY = 0;
                         btf = BoxTextureFile.BOXFLAPRIGHT;
+                        //Magic numbers I got from photoshop coordinates on the background images
                         mappedCorners = new PointF[] { new PointF(308, 55), new PointF(415, 54), new PointF(305, 297), new PointF(403, 365)  };
                     }
                     break;
             }
         }
 
+        public void uvCornerInterfaceScaling(int width,int height)
+        {
+            //converting a pixel on the screen scalled photo to a pixel in the full resolution photo
+            if (rawPhoto.Height > rawPhoto.Width)
+            {
+                scaleX = (double)((double)rawPhoto.Size.Height / (double)(height));
+                transX = (double)(((double)width - ((double)rawPhoto.Width / scaleX)) / 2);
+                scaleY = (double)((double)rawPhoto.Size.Height / (double)(height));
+                transY = 0;
+            }
+            else
+            {
+                scaleX = (double)((double)rawPhoto.Size.Width / (double)(width));
+                transX = 0;
+                scaleY = (double)((double)rawPhoto.Size.Width / (double)(width));
+                transY = (double)(((double)height - ((double)rawPhoto.Height / scaleY)) / 2); ;
+            }
+        }
+
         public Mat handle_DragDrop(object sender,DragEventArgs e)
         {
+            
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
+                //Loading a file when it is dragged in from somewhere else in the OS
                 string[] filesDroped = (string[])e.Data.GetData(DataFormats.FileDrop);
                 string filename = filesDroped[0];
                 rawPhoto = new Mat(filename);
+                ImageSizeCheck();
                 return rawPhoto;
             }
             else
             {
+                //Loading a file when it is dragged from the list view item in the program
                 var toHandle = (ListViewItem)e.Data.GetData(typeof(ListViewItem));
                 rawPhoto = new Mat(toHandle.Text);
+                ImageSizeCheck();
                 return  rawPhoto;
             }
         }
 
         public Mat handle_toolStripButtonClick(string filename)
         {
+            //When you have a file in the list view selected and hit the select button the image is loaded to the tab
             rawPhoto = new Mat(filename);
+            ImageSizeCheck();
             return rawPhoto;
+        }
+
+        public void ImageSizeCheck()
+        {
+            //Other parts the program that do image proccessing assume the image in the tab is bigger than 2048x2048
+            //This scales the image up if it is smaller than that
+            if(rawPhoto.Bitmap.Size.Width<2048||rawPhoto.Bitmap.Size.Height<2048)
+            {
+                if (rawPhoto.Bitmap.Size.Width < rawPhoto.Bitmap.Size.Height)
+                {
+                    double Scale = rawPhoto.Bitmap.Size.Width / 2048.0;
+                    CvInvoke.Resize(rawPhoto,rawPhoto,new Size(2048,(int)(rawPhoto.Bitmap.Size.Height / Scale)));
+                }
+                else
+                {
+                    double Scale = rawPhoto.Bitmap.Size.Height / 2048.0;
+                    CvInvoke.Resize(rawPhoto, rawPhoto, new Size((int)(rawPhoto.Bitmap.Size.Width / Scale),2048));
+                }
+            }
         }
 
         public Mat handel_GuessButtonClick()
@@ -157,21 +222,24 @@ namespace _3Dekeystoner
             Mat workingImage = new Mat();
             Mat contourImage = new Mat();
 
+            //Make image gray scale
             CvInvoke.CvtColor(rawPhoto, contourImage, ColorConversion.Bgr2Gray);
 
+            //Noise reduction
             UMat pyrDown = new UMat();
             CvInvoke.PyrDown(contourImage, pyrDown);
             CvInvoke.PyrUp(pyrDown, contourImage);
             CvInvoke.Threshold(contourImage, contourImage, 100, 255, ThresholdType.BinaryInv);
 
             VectorOfVectorOfPoint contours;
-
             contours = new VectorOfVectorOfPoint();
             Mat m = new Mat();
 
+            //Find areas of contiguos color values
             CvInvoke.FindContours(contourImage, contours, m, RetrType.Ccomp, ChainApproxMethod.ChainApproxSimple);
 
 
+            //Find the contour with the largest area
             double largestArea = 0.0;
             double tempArea = 0.0;
             int largestContourIndex = 0;
@@ -186,11 +254,12 @@ namespace _3Dekeystoner
                 }
             }
 
-
+            //Aproximate the largest contour with fewers points (hopefully 4)
             VectorOfVectorOfPoint convexCOI = new VectorOfVectorOfPoint(1);
             CvInvoke.ConvexHull(contours[largestContourIndex], convexCOI[0]);
             CvInvoke.ApproxPolyDP(convexCOI[0], convexCOI[0], 100, true);
 
+            //Converting VectorOfVectorOfPoint to Point[] for use with the rest of the program
             uvCorners = new Point[] {new Point(convexCOI[0].ToArray().ElementAt<Point>(0).X, convexCOI[0].ToArray().ElementAt<Point>(0).Y),
                                         new Point(convexCOI[0].ToArray().ElementAt<Point>(1).X, convexCOI[0].ToArray().ElementAt<Point>(1).Y),
                                         new Point(convexCOI[0].ToArray().ElementAt<Point>(2).X, convexCOI[0].ToArray().ElementAt<Point>(2).Y),
@@ -200,7 +269,8 @@ namespace _3Dekeystoner
             PointF[] temp = new PointF[] { new PointF(outputWidth, 0), new PointF(outputWidth, outputHeight), new PointF(0, outputHeight), new PointF(0, 0) };
 
 
-
+            //if the Aproximation wasn't a reduction to 4 points just take the first 4 points and user will have to fix manually
+            //if less than 4 point user has to do it completely manually
             if (convexCOI[0].Size >= 4)
             {
                 Point[] ctemp = convexCOI[0].ToArray();
@@ -223,45 +293,28 @@ namespace _3Dekeystoner
 
         public void handel_Paint(object sender,PaintEventArgs e,int width, int height)
         {
+            //This function draws the red lines and corner circles on top of the image in the tab
             Graphics g = e.Graphics;
             Pen pen = new Pen(Color.Red);            
             if (uvCorners[0] != null)
             {
-                double scaleX = 1;
-                double scaleY = 1;
-                double transX = 0;
-                double transY = 0;
-                if (rawPhoto.Height > rawPhoto.Width)//Was FrontMat
-                {
-                    scaleX = (double)((double)rawPhoto.Size.Height / (double)(height));
-                    transX = (double)(((double)width - ((double)rawPhoto.Width / scaleX)) / 2);
-                    scaleY = (double)((double)rawPhoto.Size.Height / (double)(height));
-                    transY = 0;
-                }
+                uvCornerInterfaceScaling(width, height);
+
                 for (int i = 0; i < 4; i++)
                 {
                     g.DrawEllipse(pen, (float)((uvCorners[i].X / scaleX) + transX - 2.5), (float)((uvCorners[i].Y / scaleY) + transY - 2.5), 5, 5);
                 }
-                g.DrawLine(pen, (float)(uvCorners[0].X / scaleX + transX), (float)(uvCorners[0].Y / scaleY), (float)(uvCorners[1].X / scaleX + transX), (float)(uvCorners[1].Y / scaleY));
-                g.DrawLine(pen, (float)(uvCorners[1].X / scaleX + transX), (float)(uvCorners[1].Y / scaleY), (float)(uvCorners[2].X / scaleX + transX), (float)(uvCorners[2].Y / scaleY));
-                g.DrawLine(pen, (float)(uvCorners[2].X / scaleX + transX), (float)(uvCorners[2].Y / scaleY), (float)(uvCorners[3].X / scaleX + transX), (float)(uvCorners[3].Y / scaleY));
-                g.DrawLine(pen, (float)(uvCorners[3].X / scaleX + transX), (float)(uvCorners[3].Y / scaleY), (float)(uvCorners[0].X / scaleX + transX), (float)(uvCorners[0].Y / scaleY));
+                g.DrawLine(pen, (float)(uvCorners[0].X / scaleX + transX), (float)(uvCorners[0].Y / scaleY + transY), (float)(uvCorners[1].X / scaleX + transX), (float)(uvCorners[1].Y / scaleY + transY));
+                g.DrawLine(pen, (float)(uvCorners[1].X / scaleX + transX), (float)(uvCorners[1].Y / scaleY + transY), (float)(uvCorners[2].X / scaleX + transX), (float)(uvCorners[2].Y / scaleY + transY));
+                g.DrawLine(pen, (float)(uvCorners[2].X / scaleX + transX), (float)(uvCorners[2].Y / scaleY + transY), (float)(uvCorners[3].X / scaleX + transX), (float)(uvCorners[3].Y / scaleY + transY));
+                g.DrawLine(pen, (float)(uvCorners[3].X / scaleX + transX), (float)(uvCorners[3].Y / scaleY + transY), (float)(uvCorners[0].X / scaleX + transX), (float)(uvCorners[0].Y / scaleY + transY));
             }
         }
 
         public int CheckIfPointClicked(Point toCheck, int width, int height)
         {
-            double scaleX = 1;
-            double scaleY = 1;
-            double transX = 0;
-            double transY = 0;
-            if (rawPhoto.Height > rawPhoto.Width)
-            {
-                scaleX = (double)((double)rawPhoto.Size.Height / (double)(height));
-                transX = (double)(((double)width - ((double)rawPhoto.Width / scaleX)) / 2);
-                scaleY = (double)((double)rawPhoto.Size.Height / (double)(height));
-                transY = 0;
-            }
+            //Figures out if one of the red circles has been clicked on
+            uvCornerInterfaceScaling(width, height);
 
             for (int i = 0; i < 4; i++)
             {
@@ -276,6 +329,7 @@ namespace _3Dekeystoner
 
         public void DistortPreviewImage()
         {
+            //Handles the realtime updating of the Preview image box of the raw texture on the top right
             Mat workingImage = rawPhoto;
 
             Mat pMatrix = new Mat();
@@ -303,6 +357,7 @@ namespace _3Dekeystoner
 
         public Bitmap DistortToMappedPreview(float wScale, float hScale)
         {
+            //Handles the realtime updating of the mapped preview image box of the mapped texture on the middle right
             Mat workingImage = new Mat();
             finalImage.CopyTo(workingImage);
 
@@ -317,7 +372,7 @@ namespace _3Dekeystoner
                 temp[i].Y=mappedCorners[i].Y * hScale;
             }
 
-                pMatrix = CvInvoke.GetPerspectiveTransform(coit, temp);
+            pMatrix = CvInvoke.GetPerspectiveTransform(coit, temp);
             CvInvoke.WarpPerspective(workingImage, workingImage, pMatrix, workingImage.Size);
             Mat cropped = new Mat(workingImage, new Rectangle(0, 0, Program.mForm.MappedPreview.Width, Program.mForm.MappedPreview.Height));
             Bitmap bitm = new Bitmap(cropped.Bitmap);
@@ -331,18 +386,8 @@ namespace _3Dekeystoner
         {
             if (e.Button != MouseButtons.Left) return;
 
-
-            double scaleX = 1;
-            double scaleY = 1;
-            double transX = 0;
-            double transY = 0;
-            if (rawPhoto?.Height > rawPhoto?.Width)
-            {
-                scaleX = (double)((double)rawPhoto.Size.Height / (double)(height));
-                transX = (double)(((double)width - ((double)rawPhoto.Width / scaleX)) / 2);
-                scaleY = (double)((double)rawPhoto.Size.Height / (double)(height));
-                transY = 0;
-            }
+            //Manages the begging of a move of one of the corners
+            uvCornerInterfaceScaling(width, height);
 
             drawing = false;
             dragging = false;
@@ -353,12 +398,12 @@ namespace _3Dekeystoner
                 currentPoint = new Point((int)((e.Location.X - transX) * transX), (int)((e.Location.Y - transY) * transY));
                 uvCorners[activePoint].X = (int)((e.Location.X - transX) * scaleX);
                 uvCorners[activePoint].Y = (int)((e.Location.Y - transY) * scaleY);
-                if (!drawing)
+                if (!drawing)//Ignore mouse events that occur before we have finished calculating the preview image
                 {
-                    drawing = true;
-                    DistortPreviewImage();
-                    Program.mForm.tabControlSides.SelectedTab.Refresh();
-                    GC.Collect();
+                    drawing = true;// Start ignoring other mouse events till it finishes drawing
+                    DistortPreviewImage(); //Calculating the texture real time preview image
+                    Program.mForm.tabControlSides.SelectedTab.Refresh(); //Show where the corners and lines are right now
+                    GC.Collect(); //Need to release all the temp memory that all the real time calculations use before we start calculating again.
                     drawing = false;
                 }
             }
@@ -366,17 +411,9 @@ namespace _3Dekeystoner
 
         public void handle_MouseMove(object sender, MouseEventArgs e, int width, int height)
         {
-            double scaleX = 1;
-            double scaleY = 1;
-            double transX = 0;
-            double transY = 0;
-            if (rawPhoto?.Height > rawPhoto?.Width)
-            {
-                scaleX = (double)((double)rawPhoto.Size.Height / (double)(height));
-                transX = (double)(((double)width - ((double)rawPhoto.Width / scaleX)) / 2);
-                scaleY = (double)((double)rawPhoto.Size.Height / (double)(height));
-                transY = 0;
-            }
+            //Same as for mouseDown with relavant differences
+            uvCornerInterfaceScaling(width, height);
+
             if (dragging)
             {
                 currentPoint = e.Location;
@@ -396,17 +433,9 @@ namespace _3Dekeystoner
 
         public void handle_MouseUp(object sender, MouseEventArgs e, int width, int height)
         {
-            double scaleX = 1;
-            double scaleY = 1;
-            double transX = 0;
-            double transY = 0;
-            if (rawPhoto?.Height > rawPhoto?.Width)
-            {
-                scaleX = (double)((double)rawPhoto.Size.Height / (double)(height));
-                transX = (double)(((double)width - ((double)rawPhoto.Width / scaleX)) / 2);
-                scaleY = (double)((double)rawPhoto.Size.Height / (double)(height));
-                transY = 0;
-            }
+            //Same as for mouseDown with relavant differences
+            uvCornerInterfaceScaling(width, height);
+
             if (dragging)
             {
                 uvCorners[activePoint].X = (int)((e.Location.X - transX) * scaleX);
@@ -426,6 +455,7 @@ namespace _3Dekeystoner
 
             finalImage = (Mat)Program.mForm.PreviewImage.Image;
         }
+        
 
         public void handle_RotateCCW()
         {
@@ -445,6 +475,48 @@ namespace _3Dekeystoner
             uvCorners[2] = uvCorners[1];
             uvCorners[1] = uvCorners[0];
             uvCorners[0] = tempPoint;
+            DistortPreviewImage();
+            finalImage = (Mat)Program.mForm.PreviewImage.Image;
+        }
+
+        public void handel_Rotate180()
+        {
+            Point tempPoint = uvCorners[0];
+            uvCorners[0] = uvCorners[2];
+            uvCorners[2] = tempPoint;
+
+            tempPoint = uvCorners[1];
+            uvCorners[1] = uvCorners[3];
+            uvCorners[3] = tempPoint;
+
+            DistortPreviewImage();
+            finalImage = (Mat)Program.mForm.PreviewImage.Image;
+        }
+
+        public void handle_MirrorHorizontal()
+        {
+            Point tempPoint = uvCorners[0];
+            uvCorners[0] = uvCorners[3];
+            uvCorners[3] = tempPoint;
+
+            tempPoint = uvCorners[1];
+            uvCorners[1] = uvCorners[2];
+            uvCorners[2] = tempPoint;
+
+            DistortPreviewImage();
+            finalImage = (Mat)Program.mForm.PreviewImage.Image;
+        }
+
+        public void handle_MirrorVertical()
+        {            
+            Point tempPoint = uvCorners[0];
+            uvCorners[0] = uvCorners[1];
+            uvCorners[1] = tempPoint;
+
+            tempPoint = uvCorners[2];
+            uvCorners[2] = uvCorners[3];
+            uvCorners[3] = tempPoint;
+
             DistortPreviewImage();
             finalImage = (Mat)Program.mForm.PreviewImage.Image;
         }
