@@ -52,6 +52,7 @@ namespace _3Dekeystoner
             {
                 uvEditData[i]=new UVEditTabPageData(i);
             }
+            toolStripCBProjectType.SelectedIndex = 0;
         }
 
 
@@ -347,6 +348,20 @@ namespace _3Dekeystoner
                     PreviewImage.Invalidate();
                     MappedPreview.Invalidate();
                 }
+        }
+
+        private void toolStripCBProjectType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(toolStripCBProjectType.SelectedIndex==0&&!tabControlSides.Controls.Contains(tabPageFlapLeft))
+            {
+                this.tabControlSides.Controls.Add(this.tabPageFlapLeft);
+                this.tabControlSides.Controls.Add(this.tabPageFlapRight);
+            }
+            else if (toolStripCBProjectType.SelectedIndex == 1 && tabControlSides.Controls.Contains(tabPageFlapLeft))
+            {
+                this.tabControlSides.Controls.Remove(this.tabPageFlapLeft);
+                this.tabControlSides.Controls.Remove(this.tabPageFlapRight);
+            }            
         }
     }
 }

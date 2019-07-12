@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.fbdExportLocation = new System.Windows.Forms.FolderBrowserDialog();
             this.labelPath = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnChooseDirectory = new System.Windows.Forms.Button();
             this.ibExportFront = new Emgu.CV.UI.ImageBox();
             this.ibExportBack = new Emgu.CV.UI.ImageBox();
             this.ibExportSides = new Emgu.CV.UI.ImageBox();
@@ -61,13 +61,13 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(134, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Choose Export Folder";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnChooseDirectory.Location = new System.Drawing.Point(12, 12);
+            this.btnChooseDirectory.Name = "button1";
+            this.btnChooseDirectory.Size = new System.Drawing.Size(134, 23);
+            this.btnChooseDirectory.TabIndex = 1;
+            this.btnChooseDirectory.Text = "Choose Export Folder";
+            this.btnChooseDirectory.UseVisualStyleBackColor = true;
+            this.btnChooseDirectory.Click += new System.EventHandler(this.btnChooseDirectory_Click);
             // 
             // ibExportFront
             // 
@@ -190,7 +190,7 @@
             this.Controls.Add(this.ibExportSides);
             this.Controls.Add(this.ibExportBack);
             this.Controls.Add(this.ibExportFront);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnChooseDirectory);
             this.Controls.Add(this.labelPath);
             this.Name = "ExportTexturesForm";
             this.Text = "Export Textures";
@@ -208,7 +208,7 @@
 
         private System.Windows.Forms.FolderBrowserDialog fbdExportLocation;
         private System.Windows.Forms.Label labelPath;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnChooseDirectory;
         private Emgu.CV.UI.ImageBox ibExportFront;
         private Emgu.CV.UI.ImageBox ibExportBack;
         private Emgu.CV.UI.ImageBox ibExportSides;

@@ -259,20 +259,21 @@ namespace _3Dekeystoner
             CvInvoke.ConvexHull(contours[largestContourIndex], convexCOI[0]);
             CvInvoke.ApproxPolyDP(convexCOI[0], convexCOI[0], 100, true);
 
-            //Converting VectorOfVectorOfPoint to Point[] for use with the rest of the program
-            uvCorners = new Point[] {new Point(convexCOI[0].ToArray().ElementAt<Point>(0).X, convexCOI[0].ToArray().ElementAt<Point>(0).Y),
-                                        new Point(convexCOI[0].ToArray().ElementAt<Point>(1).X, convexCOI[0].ToArray().ElementAt<Point>(1).Y),
-                                        new Point(convexCOI[0].ToArray().ElementAt<Point>(2).X, convexCOI[0].ToArray().ElementAt<Point>(2).Y),
-                                        new Point(convexCOI[0].ToArray().ElementAt<Point>(3).X, convexCOI[0].ToArray().ElementAt<Point>(3).Y)};
-
-            Mat pMatrix = new Mat();
-            PointF[] temp = new PointF[] { new PointF(outputWidth, 0), new PointF(outputWidth, outputHeight), new PointF(0, outputHeight), new PointF(0, 0) };
-
 
             //if the Aproximation wasn't a reduction to 4 points just take the first 4 points and user will have to fix manually
             //if less than 4 point user has to do it completely manually
             if (convexCOI[0].Size >= 4)
             {
+                //Converting VectorOfVectorOfPoint to Point[] for use with the rest of the program
+                uvCorners = new Point[] {new Point(convexCOI[0].ToArray().ElementAt<Point>(0).X, convexCOI[0].ToArray().ElementAt<Point>(0).Y),
+                                        new Point(convexCOI[0].ToArray().ElementAt<Point>(1).X, convexCOI[0].ToArray().ElementAt<Point>(1).Y),
+                                        new Point(convexCOI[0].ToArray().ElementAt<Point>(2).X, convexCOI[0].ToArray().ElementAt<Point>(2).Y),
+                                        new Point(convexCOI[0].ToArray().ElementAt<Point>(3).X, convexCOI[0].ToArray().ElementAt<Point>(3).Y)};
+
+                Mat pMatrix = new Mat();
+                PointF[] temp = new PointF[] { new PointF(outputWidth, 0), new PointF(outputWidth, outputHeight), new PointF(0, outputHeight), new PointF(0, 0) };
+
+
                 Point[] ctemp = convexCOI[0].ToArray();
                 PointF[] coit = new PointF[4];
                 for (int i = 0; i < 4; i++)
@@ -283,11 +284,17 @@ namespace _3Dekeystoner
 
                 pMatrix = CvInvoke.GetPerspectiveTransform(coit, temp);
                 CvInvoke.WarpPerspective(rawPhoto, workingImage, pMatrix, rawPhoto.Size);
-            }
-            workingImage.CopyTo(finalImage);
-            Mat cropped = new Mat(finalImage, new Rectangle(0, 0, outputWidth, outputHeight));
+                workingImage.CopyTo(finalImage);
+                Mat cropped = new Mat(finalImage, new Rectangle(0, 0, outputWidth, outputHeight));
 
-            finalImage = cropped;
+                finalImage = cropped;
+            }
+            else
+            {
+                //In the futer I plan to add auto changing of the 3rd argument ofCvInvoke.ApproxPolyDP(convexCOI[0], convexCOI[0], 100, true);
+                //To get more than 3 points in the approximation
+                MessageBox.Show("Unable to guess on this one. You will have to do it by moving the corners");
+            }
             return finalImage;
         }
 

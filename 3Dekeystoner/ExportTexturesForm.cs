@@ -71,7 +71,7 @@ namespace _3Dekeystoner
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnChooseDirectory_Click(object sender, EventArgs e)
         {
             if(Directory.Exists( labelPath.Text))
             {
@@ -101,25 +101,47 @@ namespace _3Dekeystoner
                     if (!SidesFile.IsEmpty) SidesFile.Save(exportPath + "\\Box_Sides.jpg");
                     if (!FlapLeftFile.IsEmpty) FlapLeftFile.Save(exportPath + "\\Box_Flap_Left.jpg");
                     if (!FlapRightFile.IsEmpty) FlapRightFile.Save(exportPath + "\\Box_Flap_Right.jpg");
-                    byte[] resName = Properties.Resources.Small_Flap_Box;
-                    FileStream fileStream = new FileStream(exportPath + "\\small_Flap_Box.blend", FileMode.Create);
-                    for (int i = 0; i < resName.Length; i++)
-                        fileStream.WriteByte(resName[i]);
-                    fileStream.Close();
+                    if (Program.mForm.toolStripCBProjectType.SelectedIndex == 0)
+                    {
+                        byte[] resName = Properties.Resources.Small_Flap_Box;
+                        FileStream fileStream = new FileStream(exportPath + "\\small_Flap_Box.blend", FileMode.Create);
+                        for (int i = 0; i < resName.Length; i++)
+                            fileStream.WriteByte(resName[i]);
+                        fileStream.Close();
+                    }
+                    else
+                    {
+                        byte[] resName = Properties.Resources.Small_Box;
+                        FileStream fileStream = new FileStream(exportPath + "\\small_Box.blend", FileMode.Create);
+                        for (int i = 0; i < resName.Length; i++)
+                            fileStream.WriteByte(resName[i]);
+                        fileStream.Close();
+                    }
                 }
                 else
                 {
-                    button1_Click(sender, e);
+                    btnChooseDirectory_Click(sender, e);
                     if (!FrontFile.IsEmpty) FrontFile.Save(exportPath + "\\Box_Front.jpg");
                     if (!BackFile.Size.IsEmpty) BackFile.Save(exportPath + "\\Box_Back.jpg");
                     if (!SidesFile.IsEmpty) SidesFile.Save(exportPath + "\\Box_Sides.jpg");
                     if (!FlapLeftFile.IsEmpty) FlapLeftFile.Save(exportPath + "\\Box_Flap_Left.jpg");
                     if (!FlapRightFile.IsEmpty) FlapRightFile.Save(exportPath + "\\Box_Flap_Right.jpg");
-                    byte[] resName = Properties.Resources.Small_Flap_Box;
-                    FileStream fileStream = new FileStream(exportPath + "\\small_Flap_Box.blend", FileMode.Create);
-                    for (int i = 0; i < resName.Length; i++)
-                        fileStream.WriteByte(resName[i]);
-                    fileStream.Close();
+                    if (Program.mForm.toolStripCBProjectType.SelectedIndex == 0)
+                    {
+                        byte[] resName = Properties.Resources.Small_Flap_Box;
+                        FileStream fileStream = new FileStream(exportPath + "\\small_Flap_Box.blend", FileMode.Create);
+                        for (int i = 0; i < resName.Length; i++)
+                            fileStream.WriteByte(resName[i]);
+                        fileStream.Close();
+                    }
+                    else
+                    {
+                        byte[] resName = Properties.Resources.Small_Box;
+                        FileStream fileStream = new FileStream(exportPath + "\\small_Box.blend", FileMode.Create);
+                        for (int i = 0; i < resName.Length; i++)
+                            fileStream.WriteByte(resName[i]);
+                        fileStream.Close();
+                    }
                 }
                 MessageBox.Show("Export Complete");
                 this.Close();
