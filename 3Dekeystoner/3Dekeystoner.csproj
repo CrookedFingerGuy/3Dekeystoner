@@ -60,16 +60,35 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="DebugForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="DebugForm.Designer.cs">
+      <DependentUpon>DebugForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExportTexturesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExportTexturesForm.Designer.cs">
+      <DependentUpon>ExportTexturesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainBoxTextureEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainBoxTextureEditForm.Designer.cs">
+      <DependentUpon>MainBoxTextureEditForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="UVEditTab.cs" />
+    <EmbeddedResource Include="DebugForm.resx">
+      <DependentUpon>DebugForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExportTexturesForm.resx">
+      <DependentUpon>ExportTexturesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainBoxTextureEditForm.resx">
+      <DependentUpon>MainBoxTextureEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -79,6 +98,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -96,6 +116,20 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="License-LGPL.txt" />
+    <EmbeddedResource Include="Resources\RotateCWIcon.png" />
+    <EmbeddedResource Include="Resources\RotateCCWIcon.png" />
+    <EmbeddedResource Include="Resources\Rotate180Icon.png" />
+    <EmbeddedResource Include="Resources\IconMirrorVer.png" />
+    <EmbeddedResource Include="Resources\IconMirrorHor.png" />
+    <EmbeddedResource Include="Resources\Right.jpg" />
+    <EmbeddedResource Include="Resources\Right.bmp" />
+    <EmbeddedResource Include="Resources\FlapsAndRight.jpg" />
+    <EmbeddedResource Include="Resources\Bottom.jpg" />
+    <None Include="Resources\Small_Box.blend" />
+    <None Include="Resources\small_Flap_Box.blend" />
+    <EmbeddedResource Include="Resources\Top.jpg" />
+    <EmbeddedResource Include="Resources\BackAndLeft.jpg" />
+    <EmbeddedResource Include="Resources\Front.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\EMGU.CV.4.1.0.3420\build\EMGU.CV.targets" Condition="Exists('..\packages\EMGU.CV.4.1.0.3420\build\EMGU.CV.targets')" />

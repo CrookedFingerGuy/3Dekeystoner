@@ -31,10 +31,12 @@ c:\users\chiz\source\repos\3Dekeystoner\3Dekeystoner\bin\Debug\tr\ZedGraph.resou
 c:\users\chiz\source\repos\3Dekeystoner\3Dekeystoner\bin\Debug\zh-cn\ZedGraph.resources.dll
 c:\users\chiz\source\repos\3Dekeystoner\3Dekeystoner\bin\Debug\zh-tw\ZedGraph.resources.dll
 c:\users\chiz\source\repos\3Dekeystoner\3Dekeystoner\obj\Debug\3Dekeystoner.csprojAssemblyReference.cache
-c:\users\chiz\source\repos\3Dekeystoner\3Dekeystoner\obj\Debug\_3Dekeystoner.Form1.resources
 c:\users\chiz\source\repos\3Dekeystoner\3Dekeystoner\obj\Debug\_3Dekeystoner.Properties.Resources.resources
 c:\users\chiz\source\repos\3Dekeystoner\3Dekeystoner\obj\Debug\3Dekeystoner.csproj.GenerateResource.cache
 c:\users\chiz\source\repos\3Dekeystoner\3Dekeystoner\obj\Debug\3Dekeystoner.csproj.CoreCompileInputs.cache
 c:\users\chiz\source\repos\3Dekeystoner\3Dekeystoner\obj\Debug\3Dekeystoner.csproj.CopyComplete
 c:\users\chiz\source\repos\3Dekeystoner\3Dekeystoner\obj\Debug\3Dekeystoner.exe
 c:\users\chiz\source\repos\3Dekeystoner\3Dekeystoner\obj\Debug\3Dekeystoner.pdb
+C:\Users\Chiz\source\repos\3Dekeystoner\3Dekeystoner\obj\Debug\_3Dekeystoner.DebugForm.resources
+C:\Users\Chiz\source\repos\3Dekeystoner\3Dekeystoner\obj\Debug\_3Dekeystoner.MainBoxTextureEditForm.resources
+C:\Users\Chiz\source\repos\3Dekeystoner\3Dekeystoner\obj\Debug\_3Dekeystoner.ExportTexturesForm.resources
