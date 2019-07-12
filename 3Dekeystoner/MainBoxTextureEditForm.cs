@@ -363,5 +363,11 @@ namespace _3Dekeystoner
                 this.tabControlSides.Controls.Remove(this.tabPageFlapRight);
             }            
         }
+
+        private void about3DekeystomerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutBox3DeKey about = new AboutBox3DeKey();
+            about.Show();
+        }
     }
 }

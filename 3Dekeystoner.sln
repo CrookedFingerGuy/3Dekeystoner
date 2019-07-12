@@ -8,27 +8,24 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
 		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{0361D6E0-B58D-44A1-AD2A-3D254B78F620}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0361D6E0-B58D-44A1-AD2A-3D254B78F620}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0361D6E0-B58D-44A1-AD2A-3D254B78F620}.Debug|x64.ActiveCfg = Debug|x64
+		{0361D6E0-B58D-44A1-AD2A-3D254B78F620}.Debug|x64.Build.0 = Debug|x64
 		{0361D6E0-B58D-44A1-AD2A-3D254B78F620}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0361D6E0-B58D-44A1-AD2A-3D254B78F620}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0361D6E0-B58D-44A1-AD2A-3D254B78F620}.Release|x64.ActiveCfg = Release|x64
+		{0361D6E0-B58D-44A1-AD2A-3D254B78F620}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B0ED1479-6E2E-4C0D-9472-0F812FD541C3}
-	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 2
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://tjchiswell.visualstudio.com/
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = 3Dekeystoner\\3Dekeystoner.csproj
-		SccProjectName1 = 3Dekeystoner
-		SccLocalPath1 = 3Dekeystoner
 	EndGlobalSection
 EndGlobal

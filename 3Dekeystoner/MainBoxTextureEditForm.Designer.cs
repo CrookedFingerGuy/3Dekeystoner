@@ -41,6 +41,7 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.buttonGuess = new System.Windows.Forms.ToolStripButton();
+            this.toolStripCBProjectType = new System.Windows.Forms.ToolStripComboBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.listView1 = new System.Windows.Forms.ListView();
@@ -71,7 +72,7 @@
             this.btnMirrorHorizontal = new System.Windows.Forms.Button();
             this.btnRotateCCW = new System.Windows.Forms.Button();
             this.btnRotateCW = new System.Windows.Forms.Button();
-            this.toolStripCBProjectType = new System.Windows.Forms.ToolStripComboBox();
+            this.about3DekeystomerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -145,6 +146,8 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.aboutToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.about3DekeystomerToolStripMenuItem});
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 24);
             this.aboutToolStripMenuItem.Text = "About";
@@ -195,6 +198,16 @@
             this.buttonGuess.Size = new System.Drawing.Size(42, 22);
             this.buttonGuess.Text = "Guess";
             this.buttonGuess.Click += new System.EventHandler(this.buttonGuess_Click);
+            // 
+            // toolStripCBProjectType
+            // 
+            this.toolStripCBProjectType.DropDownWidth = 250;
+            this.toolStripCBProjectType.Items.AddRange(new object[] {
+            "Small PC Box With Flap (5.25\"x7.5\"x1.25\")",
+            "Small PC Box (5.25\"x7.5\"x1.25\")"});
+            this.toolStripCBProjectType.Name = "toolStripCBProjectType";
+            this.toolStripCBProjectType.Size = new System.Drawing.Size(250, 25);
+            this.toolStripCBProjectType.SelectedIndexChanged += new System.EventHandler(this.toolStripCBProjectType_SelectedIndexChanged);
             // 
             // statusStrip1
             // 
@@ -595,15 +608,12 @@
             this.btnRotateCW.UseVisualStyleBackColor = true;
             this.btnRotateCW.Click += new System.EventHandler(this.btnRotateCW_Click);
             // 
-            // toolStripCBProjectType
+            // about3DekeystomerToolStripMenuItem
             // 
-            this.toolStripCBProjectType.DropDownWidth = 250;
-            this.toolStripCBProjectType.Items.AddRange(new object[] {
-            "Small PC Box With Flap (5.25\"x7.5\"x1.25\")",
-            "Small PC Box (5.25\"x7.5\"x1.25\")"});
-            this.toolStripCBProjectType.Name = "toolStripCBProjectType";
-            this.toolStripCBProjectType.Size = new System.Drawing.Size(250, 25);
-            this.toolStripCBProjectType.SelectedIndexChanged += new System.EventHandler(this.toolStripCBProjectType_SelectedIndexChanged);
+            this.about3DekeystomerToolStripMenuItem.Name = "about3DekeystomerToolStripMenuItem";
+            this.about3DekeystomerToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.about3DekeystomerToolStripMenuItem.Text = "About 3Dekeystoner...";
+            this.about3DekeystomerToolStripMenuItem.Click += new System.EventHandler(this.about3DekeystomerToolStripMenuItem_Click);
             // 
             // MainBoxTextureEditForm
             // 
@@ -693,5 +703,6 @@
         private System.Windows.Forms.Button btnMirrorHorizontal;
         private System.Windows.Forms.Button button1;
         public System.Windows.Forms.ToolStripComboBox toolStripCBProjectType;
+        private System.Windows.Forms.ToolStripMenuItem about3DekeystomerToolStripMenuItem;
     }
 }
